@@ -17,15 +17,7 @@ public class Client {
 			int fileCounter = 0;
 
 			for (File file : directory.listFiles()) {
-			    Scanner fileScan = new Scanner(file);
-			    /*
-			    ObjectList list;
-		        ObjectList pos;
-		        ObjectListNode p;
-		        LinePosition lineRef;
-		        Word word = new Word(pw);
-		        Word dup = new Word(pw);
-		        */        
+			    Scanner fileScan = new Scanner(file);     
 		        int lineCount = 0;
 		        while(fileScan.hasNextLine())
 		        {
@@ -36,7 +28,6 @@ public class Client {
 		            
 		            for(int n = 0; n < line.length; n++)
 		            {
-		                
 		                if(true)//(does not match with stopword)
 		                {
 		                    String word = line[n];
