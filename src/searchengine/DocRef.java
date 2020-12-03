@@ -30,6 +30,10 @@ public class DocRef {
 		this.frequency = frequency;
 	}
 	
-	
+	@Override
+	public boolean equals(Object o) {
+		DocRef ref = (DocRef) o;
+		return(this.docID.equals(ref.getDocID()));
+	}
 
 }

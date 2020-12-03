@@ -11,8 +11,11 @@ public class Word {
 		this.word=word;
 	}
 	
-	public void addRef(DocRef ref)
+	public void addRef(String fileName)
 	{
+		DocRef ref = new DocRef(fileName);
+		
 		references.add(ref);
 	}
+	
 }
