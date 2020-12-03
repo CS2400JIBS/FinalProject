@@ -15,7 +15,17 @@ public class Word {
 	{
 		DocRef ref = new DocRef(fileName);
 		
-		references.add(ref);
+		int index = references.indexOf(ref); //If returns -1, then the reference does not exist on the list
+		
+		if(index!=-1)
+		{
+			//Duplicate doc reference
+			references.get(index).increment();
+		}
+		else
+		{
+			references.add(ref);
+		}
 	}
 	
 }

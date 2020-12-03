@@ -6,7 +6,7 @@ public class DocRef {
 	
 	public DocRef(String docID) {
 		this.docID=docID;
-		this.frequency=0;
+		this.frequency=1;
 	}
 	
 	public void increment()
