@@ -15,12 +15,11 @@ public class Client {
 		test.increment();
 		DocRef testEquals = new DocRef("test");
 		LinkedList<DocRef> references = new LinkedList<DocRef>();
-		references.add(test);
+		Word word = new Word("word");
+		word.addRef("testfile");
+		word.addRef("testfile");
+		System.out.println("The document: " + word.getRef(1).getDocID() + " has a frequency of " + word.getRef(1).getFrequency());
 		
-		if(references.contains(testEquals))
-			System.out.println("Equals overrided");
-		else
-			System.out.println("Override equals failed");
 	}
 
 }
