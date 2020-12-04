@@ -1,4 +1,4 @@
-package searchengine;
+package searchEngine;
 
 public class DocRef {
 	/**

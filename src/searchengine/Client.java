@@ -1,4 +1,4 @@
-package searchengine;
+package searchEngine;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +10,7 @@ public class Client {
 	public static void main(String[] args)  {
 		
 		Dictionary dictionary = new Dictionary("collection");
+		
 		DocRef test = new DocRef("test");
 		LinkedList<DocRef> references = new LinkedList<DocRef>();
 		Word word = new Word("word");
@@ -24,7 +25,13 @@ public class Client {
 		//String query = input.nextLine();
 		
 		System.out.print("Current Time in milliseconds = ");
-	      System.out.println(System.currentTimeMillis());
+	    System.out.println(System.currentTimeMillis());
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter a word(s) to query: ");
+
+		//String query = input.nextLine();
+		//dictionary.query(query);
+		//String query = input.nextLine();
 	}
 
 }

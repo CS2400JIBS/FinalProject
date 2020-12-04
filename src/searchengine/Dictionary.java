@@ -1,4 +1,4 @@
-package searchengine;
+package searchEngine;
 
 import java.io.File;
 import java.util.LinkedList;
