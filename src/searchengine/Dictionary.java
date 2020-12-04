@@ -103,5 +103,10 @@ public class Dictionary {
 	   return true;
 	}
 	
-	
+	public void query(String strings) {
+		String[] words = strings.split("[ ,:.]");
+		if(words.length==1) {
+			
+		}
+	}
 }

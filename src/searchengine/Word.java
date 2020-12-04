@@ -36,10 +36,6 @@ public class Word {
 		return references.get(index);
 	}
 	
-	public DocRef returnRef ()
-	{
-	   return references.getFirst();
-	}
 	public String getWord()
 	{
 	   return word;
