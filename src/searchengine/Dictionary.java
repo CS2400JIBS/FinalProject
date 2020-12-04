@@ -39,7 +39,9 @@ public class Dictionary {
          "was",
          "were",
          "will",
-         "with"};
+         "with",
+         "."
+         };
    
 	
 	Dictionary(String folder) {
@@ -59,7 +61,7 @@ public class Dictionary {
 		        while(fileScan.hasNext()) //Read every line in each of the documents
 		        {
 		            String reader = fileScan.nextLine();
-		            String delims = "([ ,.;-]+)";
+		            String delims = "([ ,;-]+)";
 		            String [] line = reader.split(delims);
 		            
 		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
