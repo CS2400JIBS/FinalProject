@@ -108,7 +108,6 @@ public class Dictionary {
 	   return true;
 	}
 	
-	
 	public LinkedList<DocRef> getFrequencies(String str) {
 		Word word = new Word(str);
 		
@@ -125,14 +124,5 @@ public class Dictionary {
 			//references.sort();
 			return references;
 		}
-	}
-	
-	public String getWordOne()
-	{
-      return dictionary.get(0).getWord();
-    }
-
-
-
-	
+	}	
 }
