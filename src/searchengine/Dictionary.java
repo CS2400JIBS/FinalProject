@@ -16,6 +16,9 @@ public class Dictionary {
 	 */
 	private String folder;
 	
+	/**
+	 * The list of stopwords or words that are considered unimportant for the dictionary of words found in a set of documents
+	 */
 	private String [] stopWord = 
 	   {
 			   "a","an","and","are","as","at",
@@ -29,7 +32,11 @@ public class Dictionary {
 			   "."
          };
    
-	
+	/**
+	 * Dictionary Class Constructor
+	 * 
+	 * @param folder The folder/directory that the dictionary class will be reading and processing from
+	 */
 	Dictionary(String folder) {
 		try
 		{		
@@ -89,7 +96,12 @@ public class Dictionary {
 		}
 	}
 	
-	
+	/**
+	 * Checks if a string is a match to any of the words in our list of unimportant words
+	 * 
+	 * @param word The string that will be compared to the list of unimportant words
+	 * @return true if the word is not on the list of unimportant words, return false otherwise
+	 */
 	public boolean checkStopWord (Word word)
 	{
 	   for(int i = 0; i < stopWord.length; i++)
@@ -103,6 +115,11 @@ public class Dictionary {
 	   return true;
 	}
 	
+	/**
+	 * Traverses the dictionary of words to search for a word(s) query and process the references to output the top 10 most relevant documents to the query
+	 * 	
+	 * @param strings The words or groups of words the user wishes to search from the documents
+	 */
 	public void query(String strings) {
 		String[] words = strings.split("[ ,:.]");
 		if(words.length==1) {
