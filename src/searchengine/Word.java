@@ -47,6 +47,11 @@ public class Word {
 		Word otherWord = (Word) o;
 		return(this.word.equals(otherWord.getWord()));
 	}
+	
+	public LinkedList<DocRef> sort() {
+		//references.sort();
+		return null;
+	}
 
 	
 }
