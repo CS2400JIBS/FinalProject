@@ -22,7 +22,6 @@ public class Word {
 	public Word(String word) {
 		this.word=word;
 	}
-	
 
 	/**
 	 * Adds new references to the end of the list, otherwise increases frequency counter for existing references
@@ -30,16 +29,16 @@ public class Word {
 	 * @param docID The name of the document/file being added to the word's list of references 
 	 */
 	public void addRef(DocRef ref)
-	{		
-		int index = references.indexOf(ref); //If returns -1, then the reference does not exist on the list
+	{	
+		int index = this.references.indexOf(ref); //If returns -1, then the reference does not exist on the list
 		
-		if(index!=-1) //Duplicate doc reference
+		if(index==-1) //New doc reference
 		{
-			references.get(index).increment();
+			System.out.println("new");
 		}
-		else //New doc reference
+		else //Duplicate doc reference
 		{
-			references.add(ref);
+			
 		}
 	}
 	
@@ -79,9 +78,6 @@ public class Word {
 	@Override
 	public boolean equals(Object o) {
 		Word word = (Word) o;
-		return this.word.equals(word.getWord());
+		return this.word.compareTo(word.getWord())==0;
 	}
-	
-	
-	
 }

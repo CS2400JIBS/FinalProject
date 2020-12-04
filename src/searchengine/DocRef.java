@@ -21,7 +21,7 @@ public class DocRef {
 	 */
 	public void increment()
 	{
-		this.frequency++;
+		++this.frequency;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class DocRef {
 	@Override
 	public boolean equals(Object o) {
 		DocRef ref = (DocRef) o;
-		return(this.docID.equals(ref.getDocID()));
+		return this.docID.compareTo(ref.getDocID())==0;
 	}
 	
 

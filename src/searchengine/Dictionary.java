@@ -63,14 +63,13 @@ public class Dictionary {
                       str = str.toLowerCase(); //set all words to lowercase
                       Word word  = new Word(str);
                       
-		                if(!str.equals("s") && checkStopWord(word) && str.equals("alone"))//(does not match with stopword)
+		                if(!str.equals("s") && checkStopWord(word) && str.equals("president"))//(does not match with stopword)
 		                {
 
 		                    System.out.println(str);
 		                    
 		                    // Add doc reference to word object
 		                    DocRef ref = new DocRef(file.getName());
-		                    System.out.println(ref);
 		                    word.addRef(ref);
 		                    
 		                    // Add to tree dictionary if it does not already exist in dictionary
@@ -85,7 +84,11 @@ public class Dictionary {
 			    
 			    fileScan.close();
 			    
-		        break;
+			    if(fileCounter==2)
+			    {
+			    	break;
+			    }
+		        
 		        
 		        //Test to see if all files are being read
 
@@ -146,6 +149,7 @@ public class Dictionary {
 				for(int i=0; i<word.getDocFrequency(); i++) {
 					System.out.println(references.get(i).toString());
 				}
+				System.out.println("Length of list: "+references.size());
 			}
 			else 
 			{
