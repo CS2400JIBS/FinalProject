@@ -33,7 +33,7 @@ public class Word {
 	
 	public DocRef getRef(int index) {
 		
-		return references.get(index-1);
+		return references.get(index);
 	}
 	
 	public DocRef returnRef ()
