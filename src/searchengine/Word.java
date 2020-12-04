@@ -33,4 +33,8 @@ public class Word {
 		return references.get(index-1);
 	}
 	
+	public int getDocFrequency() {
+		return references.size();
+	}
+	
 }
