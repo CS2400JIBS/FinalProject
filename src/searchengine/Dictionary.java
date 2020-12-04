@@ -9,14 +9,13 @@ public class Dictionary {
 	/**
 	 * List of words
 	 */
-	@SuppressWarnings("unused")
 	public LinkedList<Word> dictionary = new LinkedList<Word>();
 	
 	/**
 	 * Name of folder/directory where all the documents are stored
 	 */
-	@SuppressWarnings("unused")
 	private String folder;
+	
 	private String [] stopWord = 
 	   {
 			   "a","an","and","are","as","at",
@@ -73,9 +72,10 @@ public class Dictionary {
 		        
 		        fileCounter++;
 			    
-			    System.out.println("Files successfully read: "+fileCounter);
+			    System.out.println("Files successfully read: " + fileCounter);
 			    
 			    fileScan.close();
+			    
 		        break;
 		        
 		        //Test to see if all files are being read
