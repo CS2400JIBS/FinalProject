@@ -47,7 +47,7 @@ public class Dictionary {
 		        while(fileScan.hasNext()) //Read every line in each of the documents
 		        {
 		            String reader = fileScan.nextLine();
-		            String delims = "([()'$?\" ,;-]+)";
+		            String delims = "(['$?\" ,;-]+)";
 		            String [] line = reader.split(delims);
 		            
 		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
@@ -103,21 +103,5 @@ public class Dictionary {
 	   return true;
 	}
 	
-	public LinkedList<DocRef> getFrequencies(String str) {
-		Word word = new Word(str);
-		
-		//Return Word object if it is in the dictionary
-		int index = (dictionary.indexOf(word));
-		
-		if (index == -1) {
-			return null;
-		}
-		
-		else {
-			word = dictionary.get(index);
-			LinkedList<DocRef> references = word.getReferenceList();
-			//references.sort();
-			return references;
-		}
-	}	
+	
 }
