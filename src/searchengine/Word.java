@@ -7,12 +7,15 @@ public class Word {
 	private String word;
 	private LinkedList<DocRef> references = new LinkedList<DocRef>();
 	
+	
 	public Word(String word) {
 		this.word=word;
 	}
 	
+
 	public void addRef(String fileName)
 	{
+	   // Temporary reference
 		DocRef ref = new DocRef(fileName);
 		
 		int index = references.indexOf(ref); //If returns -1, then the reference does not exist on the list
@@ -33,14 +36,19 @@ public class Word {
 		return references.get(index-1);
 	}
 	
-<<<<<<< HEAD
+	public DocRef returnRef ()
+	{
+	   return references.getFirst();
+	}
 	public String getWord()
 	{
 	   return word;
-=======
-	public int getDocFrequency() {
+	}
+	
+	public int getDocFrequency() 
+	{
 		return references.size();
->>>>>>> 55f2d6b48229dfb5134d9a3ab1106e4207d2d7e9
+
 	}
 	
 }

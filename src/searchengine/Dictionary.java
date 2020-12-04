@@ -10,13 +10,37 @@ public class Dictionary {
 	 * List of words
 	 */
 	@SuppressWarnings("unused")
-	private LinkedList<Word> dictionary = new LinkedList<Word>();
+	public LinkedList<Word> dictionary = new LinkedList<Word>();
 	
 	/**
 	 * Name of folder/directory where all the documents are stored
 	 */
 	@SuppressWarnings("unused")
 	private String folder;
+	
+   private String [] stopWord = {"a","an","and","are",
+         "as",
+         "at",
+         "be",
+         "by",
+         "for",
+         "from",
+         "has",
+         "he",
+         "in",
+         "is",
+         "it",
+         "its",
+         "of",
+         "on",
+         "that",
+         "the",
+         "to",
+         "was",
+         "were",
+         "will",
+         "with"};
+   
 	
 	Dictionary(String folder) {
 		try
@@ -34,21 +58,25 @@ public class Dictionary {
 		        while(fileScan.hasNext()) //Read every line in each of the documents
 		        {
 		            String reader = fileScan.nextLine();
-		            String delims = "[ ,.;-]+";
+		            String delims = "([ ,.;-]+)";
 		            String [] line = reader.split(delims);
 		            
 		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
 		            {
-		                if(true)//(does not match with stopword)
+		                String str = line[n];
+                      str = str.toLowerCase(); //set all words to lowercase
+                      Word word  = new Word(str);
+                      
+		                if(checkStopWord (word))//(does not match with stopword)
 		                {
-		                    String str = line[n];
-		                    str = str.toLowerCase(); //set all words to lowercase
-		                    Word word  = new Word(str);
+
 		                    System.out.println(str);
 		                    
 		                    // Add doc reference to word object
+		                    word.addRef(file.getName());
 		                    
 		                    // If doc reference exists, increase frequency
+		                    
 		                    
 		                    // Add to tree dictionary if it does not already exist in dictionary
 		                    dictionary.add(word);
@@ -75,6 +103,22 @@ public class Dictionary {
 			System.out.println("Error in file directory.");
 		}
 	}
+	
+	
+	public boolean checkStopWord (Word word)
+	{
+	   for(int i = 0; i < stopWord.length; i++)
+	   {
+	      if(word.getWord().equals(stopWord[i]))
+	      {
+	         return false;
+	      }
+	   }
+	   
+	   return true;
+	}
+	
+	
 	
 	public Word query(String str) {
 		Word word = new Word(str);

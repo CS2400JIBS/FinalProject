@@ -10,15 +10,17 @@ public class Client {
 	public static void main(String[] args)  {
 		
 		
-		Dictionary dictionary = new Dictionary("collection");
-		DocRef test = new DocRef("test");
+		Dictionary dic = new Dictionary("collection");
+		
+		System.out.println(dic.dictionary.getFirst().returnRef().getFrequency());
+		/*DocRef test = new DocRef("test");
 		test.increment();
 		DocRef testEquals = new DocRef("test");
 		LinkedList<DocRef> references = new LinkedList<DocRef>();
 		Word word = new Word("word");
 		word.addRef("testfile");
 		word.addRef("testfile");
-		System.out.println("The document: " + word.getRef(1).getDocID() + " has a frequency of " + word.getRef(1).getFrequency());
+		System.out.println("The document: " + word.getRef(1).getDocID() + " has a frequency of " + word.getRef(1).getFrequency());*/
 		
 	}
 
