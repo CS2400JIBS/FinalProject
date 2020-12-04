@@ -42,4 +42,11 @@ public class Word {
 		return references.size();
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		Word otherWord = (Word) o;
+		return(this.word.equals(otherWord.getWord()));
+	}
+
+	
 }
