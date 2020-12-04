@@ -48,12 +48,12 @@ public class Dictionary {
 		        while(fileScan.hasNext()) //Read every line in each of the documents
 		        {
 		            String reader = fileScan.nextLine();
-		            String delims = "(['$?\" ,;-]+)";
+		            String delims = "([()'$?\" ,;-]+)";
 		            String [] line = reader.split(delims);
 		            
 		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
 		            {
-		                String str = line[n];
+		               String str = line[n];
                       str = str.toLowerCase(); //set all words to lowercase
                       Word word  = new Word(str);
                       
@@ -65,13 +65,8 @@ public class Dictionary {
 		                    // Add doc reference to word object
 		                    word.addRef(file.getName());
 		                    
-		                    // If doc reference exists, increase frequency
-		                    
-		                    
 		                    // Add to tree dictionary if it does not already exist in dictionary
 		                    dictionary.add(word);
-		                    		                                       
-		                    
 		                }
 		            }
 		        }
@@ -114,7 +109,7 @@ public class Dictionary {
 		//Return Word object if it is in the dictionary
 		int index = (dictionary.indexOf(word));
 		
-		if (index == -1){
+		if (index == -1) {
 			return null;
 		}
 		
