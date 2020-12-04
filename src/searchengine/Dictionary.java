@@ -79,7 +79,14 @@ public class Dictionary {
 	public Word query(String str) {
 		Word word = new Word(str);
 		//Return Word object if it is in the dictionary
-		
+		int index = (dictionary.indexOf(word));
+		if (index == -1){
+			return null;
+		}
+		else {
+			word = dictionary.get(index);
+			
+		}
 		//If Word object does not exist in dictionary, return null
 		return null;
 	}
