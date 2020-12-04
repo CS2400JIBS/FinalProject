@@ -29,33 +29,18 @@ public class Word {
 	 * 
 	 * @param docID The name of the document/file being added to the word's list of references 
 	 */
-	public void addRef(String docID)
-	{
-	   // Create reference object using the document's name
-		DocRef ref = new DocRef(docID);
-		
+	public void addRef(DocRef ref)
+	{		
 		int index = references.indexOf(ref); //If returns -1, then the reference does not exist on the list
 		
 		if(index!=-1) //Duplicate doc reference
 		{
-			
 			references.get(index).increment();
 		}
 		else //New doc reference
 		{
 			references.add(ref);
 		}
-	}
-	
-	/**
-	 * Access the Document Reference at a given index of the References list
-	 * 
-	 * @param index of the Document Reference on the list of References
-	 * @return the Document Reference at the given index
-	 */
-	public DocRef getRef(int index) {
-		
-		return references.get(index);
 	}
 	
 	/**
@@ -78,8 +63,25 @@ public class Word {
 		return references.size();
 	}
 	
+	/**
+	 * Access the list of references attached to the Word Object
+	 * 
+	 * @return The word's list of document references
+	 */
 	public LinkedList<DocRef> getReferenceList() {
 		return this.references;
 	}
+	
+	public void sortReferences() {
+		//this.references.sort(c);
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		Word word = (Word) o;
+		return this.word.equals(word.getWord());
+	}
+	
+	
 	
 }

@@ -60,14 +60,24 @@ public class DocRef {
 		this.frequency = frequency;
 	}
 	
+	
 	/**
 	 * Equals() method to resolve document reference object comparisons
 	 * 
 	 */
+	
 	@Override
 	public boolean equals(Object o) {
 		DocRef ref = (DocRef) o;
 		return(this.docID.equals(ref.getDocID()));
 	}
+	
+
+	@Override
+	public String toString() {
+		return "[Document: " + docID + ", Frequency=" + frequency + "]";
+	}
+	
+	
 
 }

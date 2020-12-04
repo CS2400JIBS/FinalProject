@@ -17,7 +17,7 @@ public class Dictionary {
 	private String folder;
 	
 	/**
-	 * The list of stopwords or words that are considered unimportant for the dictionary of words found in a set of documents
+	 * The list of "stop words" or words that are considered unimportant for the dictionary of words found in a set of documents
 	 */
 	private String [] stopWord = 
 	   {
@@ -63,13 +63,15 @@ public class Dictionary {
                       str = str.toLowerCase(); //set all words to lowercase
                       Word word  = new Word(str);
                       
-		                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
+		                if(!str.equals("s") && checkStopWord(word) && str.equals("alone"))//(does not match with stopword)
 		                {
 
 		                    System.out.println(str);
 		                    
 		                    // Add doc reference to word object
-		                    word.addRef(file.getName());
+		                    DocRef ref = new DocRef(file.getName());
+		                    System.out.println(ref);
+		                    word.addRef(ref);
 		                    
 		                    // Add to tree dictionary if it does not already exist in dictionary
 		                    dictionary.add(word);
@@ -115,6 +117,18 @@ public class Dictionary {
 	   return true;
 	}
 	
+	public Word search(String str) {
+		Word word = new Word(str);
+		int index = dictionary.indexOf(word);
+		if(index==-1) { //if not found return null
+			return null;
+		}
+		else //return the word node
+		{
+			return dictionary.get(index);
+		}
+	}
+	
 	/**
 	 * Traverses the dictionary of words to search for a word(s) query and process the references to output the top 10 most relevant documents to the query
 	 * 	
@@ -123,7 +137,21 @@ public class Dictionary {
 	public void query(String strings) {
 		String[] words = strings.split("[ ,:.]");
 		if(words.length==1) {
-			
+			Word word = this.search(words[0]);
+			if(word!=null) //if found in dictionary
+			{
+				//print the sorted reference list
+				word.sortReferences();
+				LinkedList<DocRef> references = word.getReferenceList();
+				for(int i=0; i<word.getDocFrequency(); i++) {
+					System.out.println(references.get(i).toString());
+				}
+			}
+			else 
+			{
+				System.out.println("Not found");
+			}
+
 		}
 	}
 }
