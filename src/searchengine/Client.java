@@ -14,7 +14,6 @@ public class Client {
 		DocRef test = new DocRef("test");
 		LinkedList<DocRef> references = new LinkedList<DocRef>();
 		Word word = new Word("word");
-		
 		word.addRef("testfile");
 		word.addRef("testfile");
 		System.out.println("The document: " + word.getRef(1).getDocID() + " has a frequency of " + word.getRef(1).getFrequency());

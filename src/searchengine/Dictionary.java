@@ -17,30 +17,17 @@ public class Dictionary {
 	 */
 	@SuppressWarnings("unused")
 	private String folder;
-	
-   private String [] stopWord = {"a","an","and","are",
-         "as",
-         "at",
-         "be",
-         "by",
-         "for",
-         "from",
-         "has",
-         "he",
-         "in",
-         "is",
-         "it",
-         "its",
-         "of",
-         "on",
-         "that",
-         "the",
-         "to",
-         "was",
-         "were",
-         "will",
-         "with",
-         "."
+	private String [] stopWord = 
+	   {
+			   "a","an","and","are","as","at",
+			   "be","by",
+			   "for","from",
+			   "has","he",
+			   "in","is","it","its",
+			   "of","on",
+			   "that","the","to",
+			   "was","were","will","with",
+			   "."
          };
    
 	
@@ -61,7 +48,7 @@ public class Dictionary {
 		        while(fileScan.hasNext()) //Read every line in each of the documents
 		        {
 		            String reader = fileScan.nextLine();
-		            String delims = "([ ,;-]+)";
+		            String delims = "(['$?\" ,;-]+)";
 		            String [] line = reader.split(delims);
 		            
 		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
@@ -70,7 +57,7 @@ public class Dictionary {
                       str = str.toLowerCase(); //set all words to lowercase
                       Word word  = new Word(str);
                       
-		                if(checkStopWord (word))//(does not match with stopword)
+		                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
 		                {
 
 		                    System.out.println(str);
@@ -91,7 +78,7 @@ public class Dictionary {
 		        
 		        fileCounter++;
 			    
-			    System.out.println(fileCounter);
+			    System.out.println("Files successfully read: "+fileCounter);
 			    
 			    fileScan.close();
 		        break;
