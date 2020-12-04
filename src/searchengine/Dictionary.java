@@ -109,11 +109,7 @@ public class Dictionary {
 	}
 	
 	
-	
-	public Word query(String str) {
-		
-		
-		
+	public LinkedList<DocRef> getFrequencies(String str) {
 		Word word = new Word(str);
 		
 		//Return Word object if it is in the dictionary
@@ -125,11 +121,10 @@ public class Dictionary {
 		
 		else {
 			word = dictionary.get(index);
-			
+			LinkedList<DocRef> references = word.getReferenceList();
+			//references.sort();
+			return references;
 		}
-		
-		//If Word object does not exist in dictionary, return null
-		return null;
 	}
 	
 	public String getWordOne()
