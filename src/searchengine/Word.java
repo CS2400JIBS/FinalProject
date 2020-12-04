@@ -48,7 +48,10 @@ public class Word {
 	public int getDocFrequency() 
 	{
 		return references.size();
-
+	}
+	
+	public LinkedList<DocRef> getReferenceList() {
+		return this.references;
 	}
 	
 }
