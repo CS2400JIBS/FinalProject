@@ -17,13 +17,12 @@ public class Client {
 		word.addRef("testfile");
 		System.out.println("The document: " + word.getRef(1).getDocID() + " has a frequency of " + word.getRef(1).getFrequency());
 		System.out.println("Size of reference list: " + word.getReferenceList().size());
-		Scanner input = new Scanner(System.in);
-		System.out.println("Enter a word(s) to query: ");
-		
-		
+		//Scanner input = new Scanner(System.in);
+		//System.out.println("Enter a word(s) to query: ");		
 		//String query = input.nextLine();
 		//dictionary.query(query);
 		//String query = input.nextLine();
+		
 		System.out.print("Current Time in milliseconds = ");
 	      System.out.println(System.currentTimeMillis());
 	}
