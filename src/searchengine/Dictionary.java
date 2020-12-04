@@ -31,7 +31,7 @@ public class Dictionary {
 			    Scanner fileScan = new Scanner(file);
 			    System.out.println("File name: " + file.getName());
 
-		        while(fileScan.hasNextLine()) //Read every line in each of the documents
+		        while(fileScan.hasNext()) //Read every line in each of the documents
 		        {
 		            String reader = fileScan.nextLine();
 		            String delims = "[ ,.;-]+";
@@ -44,6 +44,7 @@ public class Dictionary {
 		                    String str = line[n];
 		                    str = str.toLowerCase(); //set all words to lowercase
 		                    Word word  = new Word(str);
+		                    System.out.println(str);
 		                    
 		                    // Add doc reference to word object
 		                    
@@ -57,13 +58,16 @@ public class Dictionary {
 		            }
 		        }
 		        
-		        //Test to see if all files are being read
-
-			    fileCounter++;
+		        fileCounter++;
 			    
 			    System.out.println(fileCounter);
 			    
 			    fileScan.close();
+		        break;
+		        
+		        //Test to see if all files are being read
+
+			    
 			}
 			
 		} 
