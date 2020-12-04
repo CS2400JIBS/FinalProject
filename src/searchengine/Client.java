@@ -12,7 +12,6 @@ public class Client {
 		
 		Dictionary dic = new Dictionary("collection");
 		
-		System.out.println(dic.dictionary.getFirst().returnRef().getFrequency());
 		/*DocRef test = new DocRef("test");
 		test.increment();
 		DocRef testEquals = new DocRef("test");
@@ -25,7 +24,7 @@ public class Client {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter a word(s) to query: ");
 		String query = input.nextLine();
-		dictionary.query(query);
+		dic.query(query);
 		
 	}
 
