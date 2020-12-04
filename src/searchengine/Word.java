@@ -33,4 +33,9 @@ public class Word {
 		return references.get(index-1);
 	}
 	
+	public String getWord()
+	{
+	   return word;
+	}
+	
 }

@@ -80,5 +80,11 @@ public class Dictionary {
 		return null;
 	}
 	
+	public String getWordOne()
+   {
+      return dictionary.get(0).getWord();
+   }
+
+	
 	
 }
