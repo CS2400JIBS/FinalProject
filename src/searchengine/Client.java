@@ -9,14 +9,9 @@ public class Client {
 
 	public static void main(String[] args)  {
 		
-		
 		Dictionary dictionary = new Dictionary("collection");
 		
 		DocRef test = new DocRef("test");
-
-		DocRef testRef = new DocRef("test");
-		test.increment();
-		DocRef testEquals = new DocRef("test");
 		LinkedList<DocRef> references = new LinkedList<DocRef>();
 		Word word = new Word("word");
 		
