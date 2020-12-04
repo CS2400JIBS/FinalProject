@@ -33,9 +33,14 @@ public class Word {
 		return references.get(index-1);
 	}
 	
+<<<<<<< HEAD
 	public String getWord()
 	{
 	   return word;
+=======
+	public int getDocFrequency() {
+		return references.size();
+>>>>>>> 55f2d6b48229dfb5134d9a3ab1106e4207d2d7e9
 	}
 	
 }
