@@ -93,6 +93,4 @@ public class DocRef {
 		return "DocRef [docID=" + docID + ", frequency=" + frequency + "]";
 	}
 	
-	
-	
 }
