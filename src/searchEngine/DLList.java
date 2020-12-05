@@ -209,7 +209,7 @@ public class DLList<T extends Comparable<? super T>> implements ListInterface<T>
       return result;
    } // end isEmpty
    
-   public void sortList()
+   public void sortItems()
 	{
     	if(firstNode!=null && this.numberOfEntries>1)
     	{

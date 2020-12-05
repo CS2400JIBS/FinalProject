@@ -30,7 +30,7 @@ public interface ListInterface<T extends Comparable<? super T>>
                 givenPosition < 1 or givenPosition > getLength(). */
    public T remove(int givenPosition);
    
-   //public void sortItems();
+   public void sortItems();
    
    
    /** Removes all entries from this list. */
