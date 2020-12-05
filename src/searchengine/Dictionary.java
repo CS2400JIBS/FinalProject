@@ -227,4 +227,11 @@ public class Dictionary {
 		System.out.println(Duration.between(before, after).toMillis()+ " miliseconds");
 		
 	}
+	
+	public void invertedIndex() {
+		//for each word in the dictionary
+		//print out doc frequency
+		//print out references in doc order
+		//
+	}
 }
