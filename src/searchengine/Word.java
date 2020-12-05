@@ -1,6 +1,7 @@
 package searchEngine;
 
 import java.util.LinkedList;
+import java.util.*;
 
 public class Word {
 	
@@ -78,8 +79,10 @@ public class Word {
 		return this.references;
 	}
 	
-	public void sortReferences() {
-		//this.references.sort(c);
+	public void sortReferences() 
+	{
+		Collections.sort(references);
+		Collections.reverse(references);
 	}
 
 	@Override

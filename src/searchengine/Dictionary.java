@@ -97,12 +97,7 @@ public class Dictionary {
 			    System.out.println("Files successfully read: " + fileCounter);
 			    System.out.println("Words in dictionary: "+dictionary.size());
 			    fileScan.close();
-			    
-			    if(fileCounter==2)
-			    {
-			    	break;
-			    }
-		        
+
 		        
 		        //Test to see if all files are being read
 

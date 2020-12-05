@@ -1,6 +1,7 @@
 package searchEngine;
 
-public class DocRef {
+public class DocRef implements Comparable<DocRef>
+{
 	/**
 	 * The document's name/ID for a reference instance
 	 */
