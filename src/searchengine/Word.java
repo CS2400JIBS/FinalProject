@@ -45,7 +45,6 @@ public class Word {
 		}
 		else 
 		{
-			System.out.println("Duplicate reference");
 			this.references.get(index).increment();
 		}
 	}

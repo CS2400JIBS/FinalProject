@@ -55,12 +55,11 @@ public class Dictionary {
                 
                 int docID = Integer.parseInt(id[1]);
                 
-			    System.out.println("File name: " + docID);
 
 		        while(fileScan.hasNext()) //Read every line in each of the documents
 		        {
 		            String reader = fileScan.nextLine();
-		            String delims = "(['$?\" ,;-]+)";
+		            String delims = "(['$?/\" ,;-]+)";
 		            String [] line = reader.split(delims);
 		            
 		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
@@ -69,10 +68,8 @@ public class Dictionary {
                       str = str.toLowerCase(); //set all words to lowercase
                       Word word  = new Word(str);
                       
-		                if(!str.equals("s") && checkStopWord(word) && str.equals("president"))//(does not match with stopword)
+		                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
 		                {
-
-		                    System.out.println(str);
 		                    
 		                    // Add doc reference to word object
 		                   int index = dictionary.indexOf(word);
@@ -94,8 +91,6 @@ public class Dictionary {
 		        
 		        fileCounter++;
 			    
-			    System.out.println("Files successfully read: " + fileCounter);
-			    System.out.println("Words in dictionary: "+dictionary.size());
 			    fileScan.close();
 
 		        
@@ -103,6 +98,7 @@ public class Dictionary {
 
 			    
 			}
+			System.out.println("Words in dictionary: "+dictionary.size());
 			
 		} 
 		catch (Exception e) {
@@ -168,7 +164,19 @@ public class Dictionary {
 		}
 		else 
 		{
-			
+			LinkedList<DocRef> combList = new LinkedList<DocRef>();
+			//check intersections
+			for(int i=0; i<words.length; i++)
+			{
+				Word word = this.search(words[i]);
+				if(word!=null)
+				{
+					for(int j=0; j<20; j++) {
+						combList.add(word.getReferenceList().get(j));
+					}
+				}
+				
+			}			
 		}
 	}
 }
