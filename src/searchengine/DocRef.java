@@ -4,7 +4,7 @@ public class DocRef {
 	/**
 	 * The document's name/ID for a reference instance
 	 */
-	private String docID;
+	private int docID;
 	
 	/**
 	 * Frequency counter for the number of times a word has appeared in a document reference
@@ -12,11 +12,11 @@ public class DocRef {
 	private int frequency;
 	
 	public DocRef() {
-		this.docID = "";
+		this.docID = 0;
 		this.frequency=0;
 	}
 	
-	public DocRef(String docID) {
+	public DocRef(int docID) {
 		this.docID=docID;
 		this.frequency=1;
 	}
@@ -34,8 +34,8 @@ public class DocRef {
 	 * 
 	 * @return
 	 */
-	public String getDocID() {
-		return docID;
+	public int getDocID() {
+		return this.docID;
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class DocRef {
 	 * 
 	 * @param docID The document's name/ID for a reference instance
 	 */
-	public void setDocID(String docID) {
+	public void setDocID(int docID) {
 		this.docID = docID;
 	}
 
@@ -69,7 +69,7 @@ public class DocRef {
 	public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((docID == null) ? 0 : docID.hashCode());
+        result = prime * result + docID;
         return result;
     }
 	
@@ -78,19 +78,15 @@ public class DocRef {
 	 * 
 	 */
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
+	public boolean equals(Object o) {
+		if (this == o)
             return true;
-        if (obj == null)
+        if (o == null)
             return false;
-        if (getClass() != obj.getClass())
+        if (getClass() != o.getClass())
             return false;
-        DocRef other = (DocRef) obj;
-        if (this.docID == null) {
-            if (other.getDocID() != null)
-                return false;
-        } 
-        else if (!this.docID.equalsIgnoreCase(other.getDocID()))
+        DocRef other = (DocRef) o;
+        if (this.docID!=other.getDocID())
             return false;
         return true;
 	}

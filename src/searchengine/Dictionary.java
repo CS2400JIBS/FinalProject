@@ -49,7 +49,13 @@ public class Dictionary {
 			for (File file : directory.listFiles()) { //Iterate through each file in the "collection" directory
 				
 			    Scanner fileScan = new Scanner(file);
-			    System.out.println("File name: " + file.getName());
+			    String fileName = file.getName();
+			    
+                String[] id = fileName.split("[-.]");
+                
+                int docID = Integer.parseInt(id[1]);
+                
+			    System.out.println("File name: " + docID);
 
 		        while(fileScan.hasNext()) //Read every line in each of the documents
 		        {
@@ -59,7 +65,7 @@ public class Dictionary {
 		            
 		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
 		            {
-		               String str = line[n];
+		              String str = line[n];
                       str = str.toLowerCase(); //set all words to lowercase
                       Word word  = new Word(str);
                       
@@ -69,7 +75,10 @@ public class Dictionary {
 		                    System.out.println(str);
 		                    
 		                    // Add doc reference to word object
-		                    DocRef ref = new DocRef(file.getName());
+		                   
+		                    
+		                    DocRef ref = new DocRef(docID);
+		                    
 		                    word.addRef(ref);
 		                    
 		                    // Add to tree dictionary if it does not already exist in dictionary
