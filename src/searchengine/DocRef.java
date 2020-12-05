@@ -65,6 +65,25 @@ public class DocRef {
 	{
 		++this.frequency;
 	}
+	
+	public int compareTo(DocRef o) {
+		int result = 0;
+		if (this.frequency<o.getFrequency()) {
+			result = -1;
+			return result;
+		
+		}	
+		else if(o.getFrequency() == this.frequency) {
+			result = 0;
+			return result;
+		}
+			
+		else {
+			result = 1;
+			return result;
+		}
+	}
+
 
 	@Override
 	public int hashCode() {
