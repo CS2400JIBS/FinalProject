@@ -1,12 +1,12 @@
 package searchEngine;
 
-public interface ListInterface<T extends Comparable<? super T>>
+public interface ListInterface
 {
    /** Adds a new entry to the end of this list.
        Entries currently in the list are unaffected.
        The list's size is increased by 1.
        @param newEntry  The object to be added as a new entry. */
-   public void add(T newEntry);
+   public void add(Word newEntry);
    
    /** Adds a new entry at a specified position within this list.
        Entries originally at and above the specified position
@@ -17,7 +17,7 @@ public interface ListInterface<T extends Comparable<? super T>>
        @param newEntry     The object to be added as a new entry.
        @throws  IndexOutOfBoundsException if either
                 newPosition < 1 or newPosition > getLength() + 1. */
-   public void add(int newPosition, T newEntry);   
+   public void add(int newPosition, Word newEntry);   
    
    /** Removes the entry at a given position from this list.
        Entries originally at positions higher than the given
@@ -28,10 +28,9 @@ public interface ListInterface<T extends Comparable<? super T>>
        @return  A reference to the removed entry.
        @throws  IndexOutOfBoundsException if either 
                 givenPosition < 1 or givenPosition > getLength(). */
-   public T remove(int givenPosition);
+   public Word remove(int givenPosition);
    
    public void sortItems();
-   
    
    /** Removes all entries from this list. */
    public void clear();
@@ -44,7 +43,7 @@ public interface ListInterface<T extends Comparable<? super T>>
        @return  The original entry that was replaced.
        @throws  IndexOutOfBoundsException if either
                 givenPosition < 1 or givenPosition > getLength(). */
-   public T replace(int givenPosition, T newEntry);
+   public Word replace(int givenPosition, Word newEntry);
    
    /** Retrieves the entry at a given position in this list.
        @param givenPosition  An integer that indicates the position of
@@ -52,18 +51,18 @@ public interface ListInterface<T extends Comparable<? super T>>
        @return  A reference to the indicated entry.
        @throws  IndexOutOfBoundsException if either
                 givenPosition < 1 or givenPosition > getLength(). */
-   public T getEntry(int givenPosition);
+   public Word getEntry(int givenPosition);
    
    /** Retrieves all entries that are in this list in the order in which
        they occur in the list.
        @return  A newly allocated array of all the entries in the list.
                 If the list is empty, the returned array is empty. */
-   public T[] toArray();
+   public Word[] toArray();
    
    /** Sees whether this list contains a given entry.
        @param anEntry  The object that is the desired entry.
        @return  True if the list contains anEntry, or false if not. */
-   public boolean contains(T anEntry);
+   public boolean contains(Word anEntry);
    
    /** Gets the length of this list.
        @return  The integer number of entries currently in the list. */
