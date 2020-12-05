@@ -177,7 +177,7 @@ public class DLList implements ListInterface
 		   Node currentNode = firstNode;
 		   for(int i = 0; i<this.numberOfEntries; i++)
 		   {
-			   if(currentNode.getData()==anEntry)
+			   if(currentNode.getData().equals(anEntry))
 			   {
 				   return true;
 			   }
