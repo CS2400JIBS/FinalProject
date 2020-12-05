@@ -24,8 +24,8 @@ public class Dictionary {
 	 */
 	private String [] stopWord = 
 	   {
-			   "a","an",/*"and",*/"are","as","at",
-			   /*"be",*/"by",
+			   "a","an","and","are","as","at",
+			   "be","by",
 			   "for","from",
 			   "has","he",
 			   "in","is","it","its",
