@@ -68,8 +68,20 @@ public class DocRef {
 	
 	@Override
 	public boolean equals(Object o) {
-		DocRef ref = (DocRef) o;
-		return this.docID.compareTo(ref.getDocID())==0;
+		if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+        DocRef other = (DocRef) o;
+        if (this.docID == null) {
+            if (other.getDocID() != null)
+                return false;
+        } 
+        else if (!this.docID.equalsIgnoreCase(other.getDocID()))
+            return false;
+        return true;
 	}
 	
 

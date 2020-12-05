@@ -34,11 +34,13 @@ public class Word {
 		
 		if(index==-1) //New doc reference
 		{
-			System.out.println("new");
+			System.out.println("New reference");
+			this.references.add(ref);
 		}
 		else //Duplicate doc reference
 		{
-			
+			System.out.println("Duplicate reference");
+			this.references.get(index).increment();
 		}
 	}
 	
@@ -77,7 +79,19 @@ public class Word {
 	
 	@Override
 	public boolean equals(Object o) {
-		Word word = (Word) o;
-		return this.word.compareTo(word.getWord())==0;
+		if (this == o)
+            return true;
+        if (o == null)
+            return false;
+        if (getClass() != o.getClass())
+            return false;
+        Word other = (Word) o;
+        if (this.word == null) {
+            if (other.getWord() != null)
+                return false;
+        } 
+        else if (!this.word.equalsIgnoreCase(other.getWord()))
+            return false;
+        return true;
 	}
 }
