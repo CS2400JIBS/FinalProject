@@ -11,9 +11,9 @@ public class Client {
 		
 		Dictionary dictionary = new Dictionary("collection");
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter a word(s) to query: ");		
-		String query = input.nextLine();
-		dictionary.query(query);
+		//System.out.println("Enter a word(s) to query: ");		
+		//String query = input.nextLine();
+		//dictionary.query(query);
 		
 		System.out.print("Current Time in milliseconds = ");
 	    System.out.println(System.currentTimeMillis());

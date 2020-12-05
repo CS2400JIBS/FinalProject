@@ -11,6 +11,11 @@ public class DocRef {
 	 */
 	private int frequency;
 	
+	public DocRef() {
+		this.docID = "";
+		this.frequency=0;
+	}
+	
 	public DocRef(String docID) {
 		this.docID=docID;
 		this.frequency=1;
@@ -60,21 +65,27 @@ public class DocRef {
 		this.frequency = frequency;
 	}
 	
+	@Override
+	public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((docID == null) ? 0 : docID.hashCode());
+        return result;
+    }
 	
 	/**
 	 * Equals() method to resolve document reference object comparisons
 	 * 
 	 */
-	
 	@Override
-	public boolean equals(Object o) {
-		if (this == o)
+	public boolean equals(Object obj) {
+		if (this == obj)
             return true;
-        if (o == null)
+        if (obj == null)
             return false;
-        if (getClass() != o.getClass())
+        if (getClass() != obj.getClass())
             return false;
-        DocRef other = (DocRef) o;
+        DocRef other = (DocRef) obj;
         if (this.docID == null) {
             if (other.getDocID() != null)
                 return false;

@@ -12,7 +12,12 @@ public class Word {
 	/**
 	 * The list of references. References are DocRef objects that store the docID that they come from and the frequency of the word in that document
 	 */
-	private LinkedList<DocRef> references = new LinkedList<DocRef>();
+	private LinkedList<DocRef> references;
+	
+	public Word() {
+		this.word = "";
+		references = null;
+	}
 	
 	/**
 	 * Word Class Single Parameter Constructor
@@ -21,6 +26,7 @@ public class Word {
 	 */
 	public Word(String word) {
 		this.word=word;
+		references = new LinkedList<DocRef>();
 	}
 
 	/**
@@ -30,14 +36,14 @@ public class Word {
 	 */
 	public void addRef(DocRef ref)
 	{	
-		int index = this.references.indexOf(ref); //If returns -1, then the reference does not exist on the list
+		int index=this.references.indexOf(ref);
+		System.out.println("index: "+index);
 		
-		if(index==-1) //New doc reference
+		if(index==-1)
 		{
-			System.out.println("New reference");
 			this.references.add(ref);
 		}
-		else //Duplicate doc reference
+		else 
 		{
 			System.out.println("Duplicate reference");
 			this.references.get(index).increment();
@@ -77,6 +83,7 @@ public class Word {
 		//this.references.sort(c);
 	}
 	
+	/*
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -94,4 +101,5 @@ public class Word {
             return false;
         return true;
 	}
+	*/
 }
