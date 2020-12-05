@@ -37,7 +37,6 @@ public class Word {
 	public void addRef(DocRef ref)
 	{	
 		int index=this.references.indexOf(ref);
-		System.out.println("index: "+index);
 		
 		if(index==-1)
 		{
