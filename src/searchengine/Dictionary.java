@@ -75,14 +75,19 @@ public class Dictionary {
 		                    System.out.println(str);
 		                    
 		                    // Add doc reference to word object
+		                   int index = dictionary.indexOf(word);
+		                   DocRef ref = new DocRef(docID);
 		                   
+		                   if(index==-1)
+		                   {
+		                	   word.addRef(ref);
+		                	   dictionary.add(word);
+		                   }
+		                   else
+		                   {
+		                	   dictionary.get(index).addRef(ref);
+		                   }
 		                    
-		                    DocRef ref = new DocRef(docID);
-		                    
-		                    word.addRef(ref);
-		                    
-		                    // Add to tree dictionary if it does not already exist in dictionary
-		                    dictionary.add(word);
 		                }
 		            }
 		        }
@@ -90,7 +95,7 @@ public class Dictionary {
 		        fileCounter++;
 			    
 			    System.out.println("Files successfully read: " + fileCounter);
-			    
+			    System.out.println("Words in dictionary: "+dictionary.size());
 			    fileScan.close();
 			    
 			    if(fileCounter==2)

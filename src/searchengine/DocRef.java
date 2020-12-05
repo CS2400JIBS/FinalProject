@@ -20,14 +20,6 @@ public class DocRef {
 		this.docID=docID;
 		this.frequency=1;
 	}
-	
-	/**
-	 * Increments the frequency counter (tracking the number of word occurrences) of the document reference
-	 */
-	public void increment()
-	{
-		++this.frequency;
-	}
 
 	/**
 	 * Access the document's name/ID for a reference instance
@@ -65,38 +57,42 @@ public class DocRef {
 		this.frequency = frequency;
 	}
 	
-	@Override
-	public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + docID;
-        return result;
-    }
 	
 	/**
-	 * Equals() method to resolve document reference object comparisons
-	 * 
+	 * Increments the frequency counter (tracking the number of word occurrences) of the document reference
 	 */
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-            return true;
-        if (o == null)
-            return false;
-        if (getClass() != o.getClass())
-            return false;
-        DocRef other = (DocRef) o;
-        if (this.docID!=other.getDocID())
-            return false;
-        return true;
+	public void increment()
+	{
+		++this.frequency;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + docID;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DocRef other = (DocRef) obj;
+		if (docID != other.docID)
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
-		return "[Document: " + docID + ", Frequency=" + frequency + "]";
+		return "DocRef [docID=" + docID + ", frequency=" + frequency + "]";
 	}
 	
 	
-
+	
 }

@@ -82,24 +82,29 @@ public class Word {
 	public void sortReferences() {
 		//this.references.sort(c);
 	}
-	
-	/*
+
 	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-            return true;
-        if (o == null)
-            return false;
-        if (getClass() != o.getClass())
-            return false;
-        Word other = (Word) o;
-        if (this.word == null) {
-            if (other.getWord() != null)
-                return false;
-        } 
-        else if (!this.word.equalsIgnoreCase(other.getWord()))
-            return false;
-        return true;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((word == null) ? 0 : word.hashCode());
+		return result;
 	}
-	*/
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Word other = (Word) obj;
+		if (word == null) {
+			if (other.word != null)
+				return false;
+		} else if (!word.equals(other.word))
+			return false;
+		return true;
+	}
 }
