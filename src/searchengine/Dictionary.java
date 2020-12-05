@@ -1,6 +1,9 @@
 package searchEngine;
 
 import java.io.File;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -21,8 +24,8 @@ public class Dictionary {
 	 */
 	private String [] stopWord = 
 	   {
-			   "a","an","and","are","as","at",
-			   "be","by",
+			   "a","an",/*"and",*/"are","as","at",
+			   /*"be",*/"by",
 			   "for","from",
 			   "has","he",
 			   "in","is","it","its",
@@ -90,7 +93,9 @@ public class Dictionary {
 		        }
 		        
 		        fileCounter++;
-			    
+			    if(fileCounter>50) {
+			    	break;
+			    }
 			    fileScan.close();
 
 		        
@@ -143,6 +148,8 @@ public class Dictionary {
 	 * @param strings The words or groups of words the user wishes to search from the documents
 	 */
 	public void query(String strings) {
+		Instant before = Instant.now();
+		
 		String[] words = strings.split("[ ,:.]");
 		if(words.length==1) {
 			Word word = this.search(words[0]);
@@ -165,18 +172,59 @@ public class Dictionary {
 		else 
 		{
 			LinkedList<DocRef> combList = new LinkedList<DocRef>();
+			
+			LinkedList<DocRef> duplicates = new LinkedList<DocRef>();
 			//check intersections
 			for(int i=0; i<words.length; i++)
 			{
 				Word word = this.search(words[i]);
+				
 				if(word!=null)
 				{
-					for(int j=0; j<20; j++) {
+					word.sortReferences();
+					for(int j=0; j<word.getDocFrequency() && j<20; j++) {
 						combList.add(word.getReferenceList().get(j));
 					}
 				}
-				
-			}			
+			}
+			LinkedList<DocRef> finalList = new LinkedList<DocRef>();
+			finalList.addAll(combList);
+			
+			System.out.println("Appended List:");
+			Collections.sort(combList);
+			Collections.reverse(combList);
+			combList.stream().forEach(System.out::println);
+
+			while(!combList.isEmpty())
+			{
+				DocRef ref=combList.remove();
+				int f = ref.getFrequency();
+				while(combList.contains(ref))
+				{
+					ref.setFrequency(ref.getFrequency()+combList.remove(combList.indexOf(ref)).getFrequency());
+				}
+				if(ref.getFrequency()>f)
+					duplicates.add(ref);
+			}
+			System.out.println("Duplicates List:");
+			duplicates.stream().forEach(System.out::println);
+			
+			System.out.println("Final List:");
+			
+			finalList.removeAll(duplicates);
+			finalList.addAll(duplicates);
+			
+			Collections.sort(finalList);
+			Collections.reverse(finalList);
+			finalList.stream().forEach(System.out::println);
+			
 		}
+		
+		
+		
+		Instant after = Instant.now();
+		
+		System.out.println(Duration.between(before, after).toMillis()+ " miliseconds");
+		
 	}
 }

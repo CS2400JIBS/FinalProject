@@ -14,9 +14,6 @@ public class Client {
 		System.out.println("Enter a word(s) to query: ");		
 		String query = input.nextLine();
 		dictionary.query(query);
-		
-		System.out.print("Current Time in milliseconds = ");
-	    System.out.println(System.currentTimeMillis());
 	    input.close();
 
 	}
