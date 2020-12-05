@@ -12,7 +12,12 @@ public class Dictionary {
 	/**
 	 * List of words
 	 */
-	public LinkedList<Word> dictionary = new LinkedList<Word>();
+	private LinkedList<Word> dictionary = new LinkedList<Word>();
+	
+	/**
+	 * Doubly Linked List of Words
+	 */
+	private DLList dictionary1 = new DLList();
 	
 	/**
 	 * Name of folder/directory where all the documents are stored
@@ -73,7 +78,17 @@ public class Dictionary {
                       
 		                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
 		                {
+		                	//Add word to dictionary if not already there
+		                	//Otherwise add a reference to the word thats already there
+		                    /*
 		                    
+		                    
+		                    
+		                    
+		                    
+		                     */
+		                	
+		                	
 		                    // Add doc reference to word object
 		                   int index = dictionary.indexOf(word);
 		                   DocRef ref = new DocRef(docID);
@@ -131,6 +146,15 @@ public class Dictionary {
 	}
 	
 	public Word search(String str) {
+		//Search dictionary for the word
+		//If not found will return null
+		/*
+		
+		
+		
+		
+		 */
+		
 		Word word = new Word(str);
 		int index = dictionary.indexOf(word);
 		if(index==-1) { //if not found return null
@@ -152,7 +176,11 @@ public class Dictionary {
 		
 		String[] words = strings.split("[ ,:.]");
 		if(words.length==1) {
+			
+			//Searches the dictionary for the word
 			Word word = this.search(words[0]);
+			
+			
 			if(word!=null) //if found in dictionary
 			{
 				//print the sorted reference list
@@ -177,6 +205,7 @@ public class Dictionary {
 			//check intersections
 			for(int i=0; i<words.length; i++)
 			{
+				//Searches the dictionary for the word
 				Word word = this.search(words[i]);
 				
 				if(word!=null)
