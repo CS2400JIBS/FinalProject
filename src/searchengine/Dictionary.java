@@ -76,6 +76,7 @@ public class Dictionary {
 	            {
 	              String str = line[n];
                   str = str.toLowerCase(); //set all words to lowercase
+                  //str = str.replace(".", "");
                   
                   //Create word object
                   Word word  = new Word(str);
@@ -90,10 +91,9 @@ public class Dictionary {
 	                	//get the list
 	                	
 	                	
-	                	
+	                	//DICTIONARY TREE
 	                	//Add word to dictionary if not already there
 	                	//Otherwise add a reference to the word thats already there
-
 	                	if(this.dictionaryTree.get(word)==null)
 	                	{
 	                		this.dictionaryTree.add(word);
@@ -106,10 +106,8 @@ public class Dictionary {
 	                	
 	              
 	                	
-	                  // Add doc reference to word object
+	                  // JAVA TREE
 	                	int index = dictionary.indexOf(word);
-	                  // DocRef ref = new DocRef(docID);
-	                  
 	                   if(index==-1)
 	                   {
 	                	   word.addRef(ref);
