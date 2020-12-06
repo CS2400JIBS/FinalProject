@@ -9,12 +9,6 @@ import java.util.Scanner;
 
 public class Dictionary {
 	
-	//Easy to change to Word type
-	//Complete with a search for Word
-	//Sorts as it adds or sort method included
-	
-	
-	
 	/**
 	 * List of words
 	 */
@@ -23,7 +17,11 @@ public class Dictionary {
 	/**
 	 * Doubly Linked List of Words
 	 */
+<<<<<<< Updated upstream
 	private ObjectBinaryTree dictionary1 = new ObjectBinaryTree();
+=======
+	//private ObjectBinaryTree dictionary = new ObjectBinaryTree();
+>>>>>>> Stashed changes
 	
 	/**
 	 * Name of folder/directory where all the documents are stored
@@ -56,6 +54,7 @@ public class Dictionary {
 		{		
 			this.folder=folder;
 			
+<<<<<<< Updated upstream
 			File directory = new File(folder);
 			
 			int fileCounter = 0;
@@ -135,6 +134,62 @@ public class Dictionary {
 		catch (Exception e) {
 			System.out.println("Error in file directory.");
 		}
+=======
+		    Scanner fileScan = new Scanner(file);
+		    String fileName = file.getName();
+		    
+            String[] id = fileName.split("[-.]");
+            
+            int docID = Integer.parseInt(id[1]);
+
+	        while(fileScan.hasNext()) //Read every line in each of the documents
+	        {
+	            String reader = fileScan.nextLine();
+	            String delims = "(['$?/\" ,;-]+)";
+	            String [] line = reader.split(delims);
+	            
+	            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
+	            {
+	              String str = line[n];
+                  str = str.toLowerCase(); //set all words to lowercase
+                  Word word  = new Word(str);
+                  
+	                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
+	                {
+	                	//add
+	                	//search the list for a match to a word
+	                	//get the list 
+	                	
+
+	                    // Add doc reference to word object
+	                   int index = dictionary.indexOf(word);
+	                   DocRef ref = new DocRef(docID);
+	                   
+	                   if(index==-1)
+	                   {
+	                	   word.addRef(ref);
+	                	   dictionary.add(word);
+	                   }
+	                   else
+	                   {
+	                	   dictionary.get(index).addRef(ref);
+	                   }
+	              
+	                }
+	            }
+	        }
+	        
+	        fileCounter++;
+		    if(fileCounter>5) {
+		    	break;
+		    }
+		    fileScan.close();
+
+		    
+		}
+		System.out.println("Words in dictionary: " + dictionary.size());
+
+>>>>>>> Stashed changes
 	}
 	
 	/**
@@ -165,7 +220,10 @@ public class Dictionary {
 		
 		
 		 */
+<<<<<<< Updated upstream
 		
+=======
+>>>>>>> Stashed changes
 		Word word = new Word(str);
 		int index = dictionary.indexOf(word);
 		if(index==-1) { //if not found return null
