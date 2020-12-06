@@ -9,7 +9,7 @@ package searchEngine;
  */
 public interface ObjectTreeNodeInterface
 {
-    public Object getInfo();
+    public Word getInfo();
     public void setLeft(ObjectTreeNode p);
     public ObjectTreeNode getLeft();
     public void setRight(ObjectTreeNode p);

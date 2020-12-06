@@ -2,7 +2,7 @@ package searchEngine;
 
 
 /**
- * ObjectBinaryTree Class for Binary Tree Data Structure of Type Object
+ * ObjectBinaryTree Class for Binary Tree Data Structure of Type Word
  * 
  * @author William A. Baires
  * @version 5/15/2020
@@ -56,11 +56,11 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
     }
 
     /**
-     * Inserts an object into a node on the Binary Search Tree.
+     * Inserts an Word into a node on the Binary Search Tree.
      * 
-     * @param o the Object that will be inserted into the tree
+     * @param o the Word that will be inserted into the tree
      */
-    public void insertBST(Object o) {
+    public void insertBST(Word o) {
         ObjectTreeNode p, q;
 
         ObjectTreeNode r = new ObjectTreeNode(o);
@@ -71,12 +71,12 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
             q = root;
             while (q != null) {
                 p = q;
-                if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) < 0 )
+                if (((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) < 0 )
                     q = p.getLeft();
                 else
                     q = p.getRight();
             }
-            if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) < 0)
+            if (((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) < 0)
                 setLeftChild(p, r);
             else
                 setRightChild(p, r);
@@ -84,12 +84,12 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
     }
 
     /**
-     * Inserts an object into a node on the Binary Search Tree.
+     * Inserts an Word into a node on the Binary Search Tree.
      * Chains duplicate node occurrences along the linear linked list that exists on each tree node.
      * 
-     * @param o the Object that will be inserted into the tree
+     * @param o the Word that will be inserted into the tree
      */
-    public void insertBSTDup(Object o) {
+    public void insertBSTDup(Word o) {
         ObjectTreeNode p, q;
 
         ObjectTreeNode r = new ObjectTreeNode(o);
@@ -98,7 +98,7 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
         else {
             p = root;
             q = root;
-            while (q != null && ((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) != 0) {
+            while (q != null && ((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) != 0) {
                 p = q;
                 if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) < 0)
                     q = p.getLeft();
@@ -114,12 +114,12 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
     }
 
     /**
-     * Searches for an object in the nodes of the Binary Search Tree
+     * Searches for an Word in the nodes of the Binary Search Tree
      * 
-     * @param o the Object that will be inserted into the tree
+     * @param o the Word that will be inserted into the tree
      * @return a null tree node
      */
-    public ObjectTreeNode searchBST(Object o) {
+    public ObjectTreeNode searchBST(Word o) {
         ObjectTreeNode p;
 
         ObjectTreeNode r = new ObjectTreeNode(o);
@@ -179,9 +179,9 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
     /**
      * Deletes a node from the Binary Search Tree
      * 
-     * @param o the Object that will be searched for and deleted from the tree
+     * @param o the Word that will be searched for and deleted from the tree
      */
-    public void delete(Object o) {
+    public void delete(Word o) {
         ObjectTreeNode s, t, v;
         boolean found = false;
 
@@ -190,11 +190,11 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
         ObjectTreeNode q = null;
         // Search for the node with info key, set p to point to that node and set q to point to its parent, if any.
         while (p != null && !found) {
-            if (((TreeComparable)(r.getInfo())).compareTo((TreeComparable)(p.getInfo())) == 0)
+            if (((r.getInfo().getWord())).compareTo((p.getInfo().getWord())) == 0)
                 found = true;
             else {
                 q = p;
-                if (((TreeComparable)(r.getInfo())).compareTo((TreeComparable)(p.getInfo())) < 0)
+                if (((r.getInfo().getWord())).compareTo((p.getInfo().getWord())) < 0)
                     p = p.getLeft();
                 else
                     p = p.getRight();

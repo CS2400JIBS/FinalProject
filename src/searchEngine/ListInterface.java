@@ -8,42 +8,14 @@ public interface ListInterface
        @param newEntry  The object to be added as a new entry. */
    public void add(Word newEntry);
    
-   /** Adds a new entry at a specified position within this list.
-       Entries originally at and above the specified position
-       are at the next higher position within the list.
-       The list's size is increased by 1.
-       @param newPosition  An integer that specifies the desired
-                           position of the new entry.
-       @param newEntry     The object to be added as a new entry.
-       @throws  IndexOutOfBoundsException if either
-                newPosition < 1 or newPosition > getLength() + 1. */
-   public void add(int newPosition, Word newEntry);   
-   
-   /** Removes the entry at a given position from this list.
-       Entries originally at positions higher than the given
-       position are at the next lower position within the list,
-       and the list's size is decreased by 1.
-       @param givenPosition  An integer that indicates the position of
-                             the entry to be removed.
-       @return  A reference to the removed entry.
-       @throws  IndexOutOfBoundsException if either 
-                givenPosition < 1 or givenPosition > getLength(). */
-   public Word remove(int givenPosition);
+
    
    public void sortItems();
    
    /** Removes all entries from this list. */
    public void clear();
    
-   /** Replaces the entry at a given position in this list.
-       @param givenPosition  An integer that indicates the position of
-                             the entry to be replaced.
-       @param newEntry  The object that will replace the entry at the
-                        position givenPosition.
-       @return  The original entry that was replaced.
-       @throws  IndexOutOfBoundsException if either
-                givenPosition < 1 or givenPosition > getLength(). */
-   public Word replace(int givenPosition, Word newEntry);
+
    
    /** Retrieves the entry at a given position in this list.
        @param givenPosition  An integer that indicates the position of
@@ -53,16 +25,12 @@ public interface ListInterface
                 givenPosition < 1 or givenPosition > getLength(). */
    public Word getEntry(int givenPosition);
    
-   /** Retrieves all entries that are in this list in the order in which
-       they occur in the list.
-       @return  A newly allocated array of all the entries in the list.
-                If the list is empty, the returned array is empty. */
-   public Word[] toArray();
+
    
    /** Sees whether this list contains a given entry.
        @param anEntry  The object that is the desired entry.
        @return  True if the list contains anEntry, or false if not. */
-   public boolean contains(Word anEntry);
+   public Word search(Word anEntry);
    
    /** Gets the length of this list.
        @return  The integer number of entries currently in the list. */

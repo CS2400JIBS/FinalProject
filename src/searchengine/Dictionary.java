@@ -9,6 +9,12 @@ import java.util.Scanner;
 
 public class Dictionary {
 	
+	//Easy to change to Word type
+	//Complete with a search for Word
+	//Sorts as it adds or sort method included
+	
+	
+	
 	/**
 	 * List of words
 	 */
@@ -17,7 +23,7 @@ public class Dictionary {
 	/**
 	 * Doubly Linked List of Words
 	 */
-	private DLList dictionary1 = new DLList();
+	private ObjectBinaryTree dictionary1 = new ObjectBinaryTree();
 	
 	/**
 	 * Name of folder/directory where all the documents are stored
@@ -78,6 +84,11 @@ public class Dictionary {
                       
 		                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
 		                {
+		                	//add
+		                	//search the list for a match to a word
+		                	//get the list 
+		                	
+		                	
 		                	//Add word to dictionary if not already there
 		                	//Otherwise add a reference to the word thats already there
 		                    /*
@@ -261,6 +272,6 @@ public class Dictionary {
 		//for each word in the dictionary
 		//print out doc frequency
 		//print out references in doc order
-		//
+		
 	}
 }

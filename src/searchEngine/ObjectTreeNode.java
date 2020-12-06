@@ -8,7 +8,7 @@ package searchEngine;
  * @version 5/15/2020
  */
 public class ObjectTreeNode implements ObjectTreeNodeInterface {
-    private Object info;
+    private Word info;
     private ObjectTreeNode left;
     private ObjectTreeNode right;
     
@@ -24,29 +24,29 @@ public class ObjectTreeNode implements ObjectTreeNodeInterface {
     /**
      * Single argument ObjectTreeNode Constructor
      * 
-     * @param o Object information that will be set to the node
+     * @param o Word information that will be set to the node
      */
-    public ObjectTreeNode (Object o) {
+    public ObjectTreeNode (Word o) {
         info = o;
         left = null;
         right = null;
     }
     
     /**
-     * Sets the information of object on the tree node
+     * Sets the information of Word on the tree node
      * 
-     * @param o Object information that will be set to the node
+     * @param o Word information that will be set to the node
      */
-    public void setInfo(Object o) {
+    public void setInfo(Word o) {
         info = o;
     }
     
     /**
-     * Returns the information of the object on the tree node
+     * Returns the information of the Word on the tree node
      * 
-     * @return The object information set to the node
+     * @return The Word information set to the node
      */
-    public Object getInfo() {
+    public Word getInfo() {
         return info;
     }
     
