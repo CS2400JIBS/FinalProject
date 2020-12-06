@@ -125,7 +125,7 @@ public class Dictionary {
 	        }
 	        
 	        fileCounter++;
-		    if(fileCounter>50) {
+		    if(fileCounter>100) {
 		    	break;
 		    }
 		    fileScan.close();
@@ -187,7 +187,7 @@ public class Dictionary {
 	public void query(String strings) {
 		Instant before = Instant.now();
 		
-		String[] words = strings.split("[ ,:]");
+		String[] words = strings.toLowerCase().split("[ ,:]");
 		if(words.length==1) {
 			
 			//Searches the dictionary for the word
