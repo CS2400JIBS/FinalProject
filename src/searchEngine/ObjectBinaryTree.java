@@ -9,6 +9,7 @@ package searchEngine;
  */
 public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
     private ObjectTreeNode root;
+    private int size;
 
     /**
      * ObjectBinaryTree Constructor.
@@ -16,6 +17,7 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
      */
     public ObjectBinaryTree() {
         root = null;
+        size = 0;
     }
 
     /**
@@ -81,6 +83,7 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
             else
                 setRightChild(p, r);
         }
+        size++;
     }
 
     /**
@@ -100,16 +103,17 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
             q = root;
             while (q != null && ((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) != 0) {
                 p = q;
-                if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) < 0)
+                if (((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) < 0)
                     q = p.getLeft();
                 else
                     q = p.getRight();
             }
-            if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) < 0)
+            if (((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) < 0)
                 setLeftChild(p, r);
-            else if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) > 0)
+            else if (((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) > 0)
                 setRightChild(p, r);
-            else ((TreeComparable)(p.getInfo())).operate(r.getInfo());
+            else 
+            	System.out.println("");//((p.getInfo())).operate(r.getInfo());
         }
     }
 
@@ -121,60 +125,26 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
      */
     public Word searchBST(Word o) {
         ObjectTreeNode p;
-
+        if(o==null)
+        	return null;
         ObjectTreeNode r = new ObjectTreeNode(o);
         if(root != null) {
             p = root;
             while (p != null) {
-                if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) < 0)
+                if (((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) < 0)
                     p = p.getLeft();
-                else if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) > 0)
+                else if (((r.getInfo().getWord())).compareTo(p.getInfo().getWord()) > 0)
                     p = p.getRight();
                 else 
                     return p.getInfo();
             }
         }
+        System.out.println("return null");
         return null;
     }
 
-    /**
-     * Traverses the Binary Search Tree in Pre-Order sequence
-     * 
-     * @param tree the Binary Search Tree that will be traversed
-     */
-    public void preTrav(ObjectTreeNode tree) {
-        if (tree != null) {
-            ((TreeComparable)tree.getInfo()).visit();
-            preTrav(tree.getLeft());
-            preTrav(tree.getRight());
-        }
-    }
 
-    /**
-     * Traverses the Binary Search Tree in In-Order sequence
-     * 
-     * @param tree the Binary Search Tree that will be traversed
-     */
-    public void inTrav(ObjectTreeNode tree) {
-        if (tree != null) {
-            inTrav(tree.getLeft());
-            ((TreeComparable)tree.getInfo()).visit();
-            inTrav(tree.getRight());
-        }
-    }
 
-    /**
-     * Traverses the Binary Search Tree in Post-Order
-     * 
-     * @param tree the Binary Search Tree that will be traversed
-     */
-    public void postTrav(ObjectTreeNode tree) {
-        if (tree != null) {
-            postTrav(tree.getLeft());
-            postTrav(tree.getRight());
-            ((TreeComparable)tree.getInfo()).visit();
-        }
-    }
 
     /**
      * Deletes a node from the Binary Search Tree
@@ -240,4 +210,14 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
             else q.setRight(v);
         }
     }
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+    
+    
 }

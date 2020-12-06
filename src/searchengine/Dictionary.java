@@ -1,6 +1,7 @@
 package searchEngine;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
@@ -50,89 +51,98 @@ public class Dictionary {
 	 * Dictionary Class Constructor
 	 * 
 	 * @param folder The folder/directory that the dictionary class will be reading and processing from
+	 * @throws FileNotFoundException 
 	 */
-	Dictionary(String folder) {
-		try
-		{		
-			this.folder=folder;
-			
-			File directory = new File(folder);
-			
-			int fileCounter = 0;
+	Dictionary(String folder) throws FileNotFoundException {	
+		this.folder=folder;
+		
+		File directory = new File(folder);
+		
+		int fileCounter = 0;
 
-			for (File file : directory.listFiles()) { //Iterate through each file in the "collection" directory
-				
-			    Scanner fileScan = new Scanner(file);
-			    String fileName = file.getName();
-			    
-                String[] id = fileName.split("[-.]");
-                
-                int docID = Integer.parseInt(id[1]);
-                
+		for (File file : directory.listFiles()) { //Iterate through each file in the "collection" directory
+			
+		    Scanner fileScan = new Scanner(file);
+		    String fileName = file.getName();
+		    
+            String[] id = fileName.split("[-.]");
+            
+            int docID = Integer.parseInt(id[1]);
+            
+            System.out.println("step 1");
 
-		        while(fileScan.hasNext()) //Read every line in each of the documents
-		        {
-		            String reader = fileScan.nextLine();
-		            String delims = "(['$?/\" ,;-]+)";
-		            String [] line = reader.split(delims);
-		            
-		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
-		            {
-		              String str = line[n];
-                      str = str.toLowerCase(); //set all words to lowercase
-                      Word word  = new Word(str);
-                      
-		                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
-		                {
-		                	//add
-		                	//search the list for a match to a word
-		                	//get the list 
-		                	
-		                	
-		                	//Add word to dictionary if not already there
-		                	//Otherwise add a reference to the word thats already there
-		                    Word word1 = dictionary.searchBST(new Word("army"));
-		                    LinkedList<DocRef> refer = word1.getReferenceList();
+	        while(fileScan.hasNext()) //Read every line in each of the documents
+	        {
+	            String reader = fileScan.nextLine();
+	            String delims = "(['$?/\" ,;-]+)";
+	            String [] line = reader.split(delims);
+	            
+	            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
+	            {
+	              String str = line[n];
+                  str = str.toLowerCase(); //set all words to lowercase
+                  Word word  = new Word(str);
+                  
+	                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
+	                {
+	                	//add
+	                	//search the list for a match to a word
+	                	//get the list 
+	                	
+	                	System.out.println("step 2");
+	                	//Add word to dictionary if not already there
+	                	//Otherwise add a reference to the word thats already there
+	                	DocRef ref = new DocRef(docID);
+	                	word = dictionary.searchBST(word);
+	                	System.out.println("step 5");
+	                	if(word==null) {
+	                		
+	                		dictionary.insertBST(word);
+
+	                	}
+	                	else {
+	                		System.out.println("step 4");
+	                		dictionary.searchBST(word).addRef(ref);
+	                		LinkedList<DocRef> refer = word.getReferenceList();
 		                    refer.stream().forEach(System.out::println);
-		                	
-		                	
-		                    // Add doc reference to word object
-		                	/*
-		                   int index = dictionary.indexOf(word);
-		                   DocRef ref = new DocRef(docID);
-		                   
-		                   if(index==-1)
-		                   {
-		                	   word.addRef(ref);
-		                	   dictionary.add(word);
-		                   }
-		                   else
-		                   {
-		                	   dictionary.get(index).addRef(ref);
-		                   }
-		                   */
-		              
-		                }
-		            }
-		        }
-		        
-		        fileCounter++;
-			    if(fileCounter>50) {
-			    	break;
-			    }
-			    fileScan.close();
+	                	}
+	                    //LinkedList<DocRef> refer = word1.getReferenceList();
+	                    //refer.stream().forEach(System.out::println);
+	                	
+	                	
+	                    // Add doc reference to word object
+	                	/*
+	                   int index = dictionary.indexOf(word);
+	                   DocRef ref = new DocRef(docID);
+	                   
+	                   if(index==-1)
+	                   {
+	                	   word.addRef(ref);
+	                	   dictionary.add(word);
+	                   }
+	                   else
+	                   {
+	                	   dictionary.get(index).addRef(ref);
+	                   }
+	                   */
+	              
+	                }
+	            }
+	        }
+	        
+	        fileCounter++;
+		    if(fileCounter>5) {
+		    	break;
+		    }
+		    fileScan.close();
 
-		        
-		        //Test to see if all files are being read
+	        
+	        //Test to see if all files are being read
 
-			    
-			}
-			//System.out.println("Words in dictionary: "+dictionary.size());
-			
-		} 
-		catch (Exception e) {
-			System.out.println("Error in file directory.");
+		    
 		}
+		System.out.println("Words in dictionary: "+dictionary.getSize());
+
 	}
 	
 	/**

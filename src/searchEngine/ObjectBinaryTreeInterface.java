@@ -14,8 +14,6 @@ public interface ObjectBinaryTreeInterface
     public void insertBST(Word o);
     public void insertBSTDup(Word o);
     public Word searchBST(Word o);
-    public void preTrav(ObjectTreeNode tree);
-    public void inTrav(ObjectTreeNode tree);
-    public void postTrav(ObjectTreeNode tree);
+
     public void delete(Word o);
 }

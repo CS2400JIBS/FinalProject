@@ -42,10 +42,12 @@ public class Word {
 		if(index==-1)
 		{
 			this.references.add(ref);
+			System.out.println("new ref");
 		}
 		else 
 		{
 			this.references.get(index).increment();
+			System.out.println("dup ref");
 		}
 	}
 	
@@ -108,6 +110,9 @@ public class Word {
 			return false;
 		return true;
 	}
+
+	
+	
 	
 	
 }

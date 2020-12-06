@@ -85,4 +85,6 @@ public class ObjectTreeNode implements ObjectTreeNodeInterface {
     public ObjectTreeNode getRight() {
         return right;
     }
+    
+    
 }
