@@ -18,12 +18,12 @@ public class Dictionary {
 	/**
 	 * List of words
 	 */
-	private LinkedList<Word> dictionary = new LinkedList<Word>();
+	//private LinkedList<Word> dictionary = new LinkedList<Word>();
 	
 	/**
 	 * Doubly Linked List of Words
 	 */
-	private ObjectBinaryTree dictionary1 = new ObjectBinaryTree();
+	private ObjectBinaryTree dictionary = new ObjectBinaryTree();
 	
 	/**
 	 * Name of folder/directory where all the documents are stored
@@ -91,16 +91,13 @@ public class Dictionary {
 		                	
 		                	//Add word to dictionary if not already there
 		                	//Otherwise add a reference to the word thats already there
-		                    /*
-		                    
-		                    
-		                    
-		                    
-		                    
-		                     */
+		                    Word word1 = dictionary.searchBST(new Word("army"));
+		                    LinkedList<DocRef> refer = word1.getReferenceList();
+		                    refer.stream().forEach(System.out::println);
 		                	
 		                	
 		                    // Add doc reference to word object
+		                	/*
 		                   int index = dictionary.indexOf(word);
 		                   DocRef ref = new DocRef(docID);
 		                   
@@ -113,6 +110,7 @@ public class Dictionary {
 		                   {
 		                	   dictionary.get(index).addRef(ref);
 		                   }
+		                   */
 		              
 		                }
 		            }
@@ -129,7 +127,7 @@ public class Dictionary {
 
 			    
 			}
-			System.out.println("Words in dictionary: "+dictionary.size());
+			//System.out.println("Words in dictionary: "+dictionary.size());
 			
 		} 
 		catch (Exception e) {
@@ -165,7 +163,7 @@ public class Dictionary {
 		
 		
 		 */
-		
+		/*
 		Word word = new Word(str);
 		int index = dictionary.indexOf(word);
 		if(index==-1) { //if not found return null
@@ -175,6 +173,8 @@ public class Dictionary {
 		{
 			return dictionary.get(index);
 		}
+		*/
+		return null;
 	}
 	
 	/**

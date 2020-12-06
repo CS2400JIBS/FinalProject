@@ -119,7 +119,7 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
      * @param o the Word that will be inserted into the tree
      * @return a null tree node
      */
-    public ObjectTreeNode searchBST(Word o) {
+    public Word searchBST(Word o) {
         ObjectTreeNode p;
 
         ObjectTreeNode r = new ObjectTreeNode(o);
@@ -131,7 +131,7 @@ public class ObjectBinaryTree implements ObjectBinaryTreeInterface {
                 else if (((TreeComparable)(r.getInfo())).compareTo(p.getInfo()) > 0)
                     p = p.getRight();
                 else 
-                    return p;
+                    return p.getInfo();
             }
         }
         return null;
