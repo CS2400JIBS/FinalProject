@@ -15,6 +15,10 @@ public class Dictionary {
 	 */
 	private LinkedList<Word> dictionary = new LinkedList<Word>();
 	
+	/**
+	 * Our own data structure
+	 */
+	private BinarySearchTree dictionaryTree = new BinarySearchTree();
 
 	/**
 	 * Name of folder/directory where all the documents are stored
@@ -71,30 +75,40 @@ public class Dictionary {
 	            {
 	              String str = line[n];
                   str = str.toLowerCase(); //set all words to lowercase
+                  
+                  //Create word object
                   Word word  = new Word(str);
+                  
+                  //Create reference for that word
+                  DocRef ref = new DocRef(docID);
                   
 	                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
 	                {
 	                	//add
 	                	//search the list for a match to a word
-	                	//get the list 
+	                	//get the list
+	                	
 	                	
 	                	
 	                	//Add word to dictionary if not already there
 	                	//Otherwise add a reference to the word thats already there
-	                    /*
-	                    
-	                    
-	                    
-	                    
-	                    
-	                     */
+
+	                	if(this.dictionaryTree.get(word)==null)
+	                	{
+	                		this.dictionaryTree.add(word);
+	                	}
 	                	
+	                	else
+	                	{
+	                		this.dictionaryTree.get(word).addRef(ref);
+	                	}
 	                	
-	                    // Add doc reference to word object
-	                   int index = dictionary.indexOf(word);
-	                   DocRef ref = new DocRef(docID);
-	                   
+	              
+	                	
+	                  // Add doc reference to word object
+	                	int index = dictionary.indexOf(word);
+	                  // DocRef ref = new DocRef(docID);
+	                  
 	                   if(index==-1)
 	                   {
 	                	   word.addRef(ref);
@@ -104,13 +118,13 @@ public class Dictionary {
 	                   {
 	                	   dictionary.get(index).addRef(ref);
 	                   }
-	              
+	                   
 	                }
 	            }
 	        }
 	        
 	        fileCounter++;
-		    if(fileCounter>50) {
+		    if(fileCounter>30) {
 		    	break;
 		    }
 		    fileScan.close();
@@ -120,7 +134,8 @@ public class Dictionary {
 
 		    
 		}
-		System.out.println("Words in dictionary: "+dictionary.size());
+		System.out.println("Words in dictionaryTree: "+this.dictionaryTree.size);
+		System.out.println("Words in dictionary: "+this.dictionary.size());
 	}
 	
 	/**
@@ -153,12 +168,13 @@ public class Dictionary {
 		 */
 		Word word = new Word(str);
 		int index = dictionary.indexOf(word);
-		if(index==-1) { //if not found return null
+		word=this.dictionaryTree.get(word);
+		if(word==null) { //if not found return null
 			return null;
 		}
 		else //return the word node
 		{
-			return dictionary.get(index);
+			return this.dictionaryTree.get(word);
 		}
 	}
 	
@@ -182,7 +198,7 @@ public class Dictionary {
 				//print the sorted reference list
 				word.sortReferences();
 				LinkedList<DocRef> references = word.getReferenceList();
-				for(int i=0; i<word.getDocFrequency(); i++) {
+				for(int i=0; i<word.getDocFrequency() && i<10 ; i++) {
 					System.out.println(references.get(i).toString());
 				}
 				System.out.println("Length of list: "+references.size());
@@ -207,7 +223,7 @@ public class Dictionary {
 				if(word!=null)
 				{
 					word.sortReferences();
-					for(int j=0; j<word.getDocFrequency() && j<20; j++) {
+					for(int j=0; j<word.getDocFrequency() && j<50; j++) {
 						combList.add(word.getReferenceList().get(j));
 					}
 				}
