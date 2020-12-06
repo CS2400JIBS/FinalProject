@@ -2,6 +2,8 @@ package searchEngine;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
@@ -18,13 +20,15 @@ public class Dictionary {
 	/**
 	 * Our own data structure
 	 */
-	private BinarySearchTree dictionaryTree = new BinarySearchTree();
+	private BinarySearchTree dictionaryTree;
 
 	/**
 	 * Name of folder/directory where all the documents are stored
 	 */
 	private String folder;
 	
+	private PrintWriter pw;
+	 
 	/**
 	 * The list of "stop words" or words that are considered unimportant for the dictionary of words found in a set of documents
 	 */
@@ -39,7 +43,7 @@ public class Dictionary {
 			   "s",
 			   "that","the","to",
 			   "was","were","will","with",
-			   "."
+			   ".", "\n", " "
          };
    
 	/**
@@ -48,7 +52,10 @@ public class Dictionary {
 	 * @param folder The folder/directory that the dictionary class will be reading and processing from
 	 * @throws FileNotFoundException 
 	 */
-	Dictionary(String folder) throws FileNotFoundException {
+	Dictionary(String folder, PrintWriter pw) throws FileNotFoundException {
+		this.pw = pw;
+		
+		dictionaryTree = new BinarySearchTree(this.pw);
 		
 		this.folder=folder;
 		
@@ -76,8 +83,6 @@ public class Dictionary {
 	            {
 	              String str = line[n];
                   str = str.toLowerCase(); //set all words to lowercase
-                  //str = str.replace(".", "");
-                  
                   //Create word object
                   Word word  = new Word(str);
                   
@@ -96,6 +101,7 @@ public class Dictionary {
 	                	//Otherwise add a reference to the word thats already there
 	                	if(this.dictionaryTree.get(word)==null)
 	                	{
+	                		word.addRef(ref);
 	                		this.dictionaryTree.add(word);
 	                	}
 	                	
@@ -103,29 +109,19 @@ public class Dictionary {
 	                	{
 	                		this.dictionaryTree.get(word).addRef(ref);
 	                	}
-	                	
-	              
-	                	
-	                  // JAVA TREE
-	                	int index = dictionary.indexOf(word);
-	                   if(index==-1)
-	                   {
-	                	   word.addRef(ref);
-	                	   dictionary.add(word);
-	                   }
-	                   else
-	                   {
-	                	   dictionary.get(index).addRef(ref);
-	                   }
 	                   
 	                }
 	            }
 	        }
 	        
 	        fileCounter++;
-		    if(fileCounter>100) {
+	        
+	        /*
+		    if(fileCounter>20) {
 		    	break;
 		    }
+		    */
+		    
 		    fileScan.close();
 
 	        
@@ -134,7 +130,6 @@ public class Dictionary {
 		    
 		}
 		System.out.println("Words in dictionaryTree: "+this.dictionaryTree.size);
-		System.out.println("Words in dictionary: "+this.dictionary.size()+"\n");
 	}
 	
 	/**
@@ -198,12 +193,17 @@ public class Dictionary {
 				word.sortReferences();
 				LinkedList<DocRef> references = word.getReferenceList();
 				for(int i=0; i<word.getDocFrequency() && i<10 ; i++) {
-					System.out.println(references.get(i).toString());
+					String s = references.get(i).toString();
+					System.out.println(s);
+					pw.write(s);
 				}
+				
+				this.pw.write("Length of list: "+references.size()+"\n");
 				System.out.println("Length of list: "+references.size());
 			}
 			else 
 			{
+				this.pw.write("Not found\n");
 				System.out.println("Not found");
 			}
 
@@ -231,6 +231,7 @@ public class Dictionary {
 			LinkedList<DocRef> finalList = new LinkedList<DocRef>();
 			finalList.addAll(combList);
 			
+			this.pw.write("Appended List:\n");
 			System.out.println("Appended List:");
 			Collections.sort(combList);
 			Collections.reverse(combList);
@@ -247,9 +248,12 @@ public class Dictionary {
 				if(ref.getFrequency()>f)
 					duplicates.add(ref);
 			}
+			this.pw.write("Duplicates List:\n");
 			System.out.println("Duplicates List:");
+			//duplicates.stream().forEach(pw::write);
 			duplicates.stream().forEach(System.out::println);
 			
+			this.pw.write("Final List:\n");
 			System.out.println("Final List:");
 			
 			finalList.removeAll(duplicates);
@@ -264,8 +268,9 @@ public class Dictionary {
 		
 		
 		Instant after = Instant.now();
-		
-		System.out.println(Duration.between(before, after).toMillis()+ " miliseconds");
+		long duration = Duration.between(before, after).toMillis();
+		System.out.println(duration+ " miliseconds");
+		this.pw.write(duration+ " miliseconds\n");
 		
 	}
 	

@@ -1,11 +1,15 @@
 package searchEngine;
 
+import java.io.PrintWriter;
+
 public class BinarySearchTree {
     
     private static class BinaryNode {
       private Word word;
       private BinaryNode left;
       private BinaryNode right;
+
+	  
     
     
     /** 
@@ -45,11 +49,13 @@ public class BinarySearchTree {
     /* the root of the tree is the only data field needed */
     protected BinaryNode root = null; // null when tree is empty
     protected int size;
-
+    private PrintWriter pw;
+    
     /* constructs an empty tree
      */
-    public BinarySearchTree() {
+    public BinarySearchTree(PrintWriter pw) {
     	super();
+    	this.pw = pw;
     }
 
     /* constructs a tree with one element, as given
@@ -102,7 +108,7 @@ public class BinarySearchTree {
     public void inOrder(BinaryNode root) {
     	if (root != null) {
             inOrder(root.left);
-            root.getWord().printIndex();
+            root.getWord().printIndex(this.pw);
             inOrder(root.right);
         }
     }

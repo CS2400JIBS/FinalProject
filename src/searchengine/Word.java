@@ -1,6 +1,9 @@
 package searchEngine;
 
 import java.util.LinkedList;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Word {
@@ -15,6 +18,11 @@ public class Word {
 	 */
 	private LinkedList<DocRef> references;
 	
+	/**
+	 * PrintWriter
+	 */
+	private PrintWriter pw;
+	
 	public Word() {
 		this.word = "";
 		references = null;
@@ -24,6 +32,7 @@ public class Word {
 	 * Word Class Single Parameter Constructor
 	 * 
 	 * @param word The string value of the word being added as a Word Object
+	 * @throws IOException 
 	 */
 	public Word(String word) {
 		this.word=word;
@@ -84,14 +93,18 @@ public class Word {
 		Collections.reverse(references);
 	}
 	
-	public void printIndex() {
-		System.out.print(this.word);// + " [Document Frequency: " + this.getDocFrequency() + "]" + " --> ");
-		/*
+	public void printIndex(PrintWriter pw) {
+		this.pw=pw;
+		System.out.print(this.word+ " [Document Frequency: " + this.getDocFrequency() + "]" + " --> ");
+		pw.write(this.word+ " [Document Frequency: " + this.getDocFrequency() + "]" + " --> ");
+		
 		for(int i=0; i<this.getDocFrequency(); i++)
 		{
-			System.out.print(this.references.get(i));
+			String s = this.references.get(i).toString();
+			pw.write(s);
+			System.out.print(s);
 		}
-		*/
+		pw.write("\n");
 		System.out.println();
 	}
 
