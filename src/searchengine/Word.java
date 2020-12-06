@@ -83,6 +83,17 @@ public class Word {
 		Collections.sort(references);
 		Collections.reverse(references);
 	}
+	
+	public void printIndex() {
+		System.out.print(this.word);// + " [Document Frequency: " + this.getDocFrequency() + "]" + " --> ");
+		/*
+		for(int i=0; i<this.getDocFrequency(); i++)
+		{
+			System.out.print(this.references.get(i));
+		}
+		*/
+		System.out.println();
+	}
 
 	@Override
 	public int hashCode() {

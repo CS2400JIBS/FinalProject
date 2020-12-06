@@ -110,7 +110,7 @@ public class DocRef implements Comparable<DocRef>
 
 	@Override
 	public String toString() {
-		return "DocRef [docID=" + docID + ", frequency=" + frequency + "]";
+		return "[Doc-" + docID + ", frequency=" + frequency + "]";
 	}
 	
 }

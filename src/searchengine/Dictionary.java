@@ -36,6 +36,7 @@ public class Dictionary {
 			   "has","he",
 			   "in","is","it","its",
 			   "of","on",
+			   "s",
 			   "that","the","to",
 			   "was","were","will","with",
 			   "."
@@ -68,7 +69,7 @@ public class Dictionary {
 	        while(fileScan.hasNext()) //Read every line in each of the documents
 	        {
 	            String reader = fileScan.nextLine();
-	            String delims = "(['$?/\" ,;-]+)";
+	            String delims = "([0123456789:#!()&'$?/\" ,;-]+)";
 	            String [] line = reader.split(delims);
 	            
 	            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
@@ -82,7 +83,7 @@ public class Dictionary {
                   //Create reference for that word
                   DocRef ref = new DocRef(docID);
                   
-	                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
+	                if(checkStopWord(word))//(does not match with stopword)
 	                {
 	                	//add
 	                	//search the list for a match to a word
@@ -124,7 +125,7 @@ public class Dictionary {
 	        }
 	        
 	        fileCounter++;
-		    if(fileCounter>30) {
+		    if(fileCounter>50) {
 		    	break;
 		    }
 		    fileScan.close();
@@ -135,7 +136,7 @@ public class Dictionary {
 		    
 		}
 		System.out.println("Words in dictionaryTree: "+this.dictionaryTree.size);
-		System.out.println("Words in dictionary: "+this.dictionary.size());
+		System.out.println("Words in dictionary: "+this.dictionary.size()+"\n");
 	}
 	
 	/**
@@ -186,7 +187,7 @@ public class Dictionary {
 	public void query(String strings) {
 		Instant before = Instant.now();
 		
-		String[] words = strings.split("[ ,:.]");
+		String[] words = strings.split("[ ,:]");
 		if(words.length==1) {
 			
 			//Searches the dictionary for the word
@@ -222,6 +223,7 @@ public class Dictionary {
 				
 				if(word!=null)
 				{
+					//
 					word.sortReferences();
 					for(int j=0; j<word.getDocFrequency() && j<50; j++) {
 						combList.add(word.getReferenceList().get(j));
@@ -273,6 +275,6 @@ public class Dictionary {
 		//for each word in the dictionary
 		//print out doc frequency
 		//print out references in doc order
-		
+		this.dictionaryTree.traversal();
 	}
 }

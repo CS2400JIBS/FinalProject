@@ -94,6 +94,18 @@ public class BinarySearchTree {
     	root = add(value, root);
     	size++;
     }
+    
+    public void traversal() {
+    	inOrder(this.root);
+    }
+    
+    public void inOrder(BinaryNode root) {
+    	if (root != null) {
+            inOrder(root.left);
+            root.getWord().printIndex();
+            inOrder(root.right);
+        }
+    }
 
     /* add a value to the tree, replacing an existing value if necessary
      * @param	value to be inserted
