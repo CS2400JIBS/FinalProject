@@ -1,6 +1,7 @@
 package searchEngine;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Collections;
@@ -14,15 +15,7 @@ public class Dictionary {
 	 */
 	private LinkedList<Word> dictionary = new LinkedList<Word>();
 	
-	/**
-	 * Doubly Linked List of Words
-	 */
-<<<<<<< Updated upstream
-	private ObjectBinaryTree dictionary1 = new ObjectBinaryTree();
-=======
-	//private ObjectBinaryTree dictionary = new ObjectBinaryTree();
->>>>>>> Stashed changes
-	
+
 	/**
 	 * Name of folder/directory where all the documents are stored
 	 */
@@ -48,99 +41,25 @@ public class Dictionary {
 	 * Dictionary Class Constructor
 	 * 
 	 * @param folder The folder/directory that the dictionary class will be reading and processing from
+	 * @throws FileNotFoundException 
 	 */
-	Dictionary(String folder) {
-		try
-		{		
-			this.folder=folder;
+	Dictionary(String folder) throws FileNotFoundException {
+		
+		this.folder=folder;
+		
+		File directory = new File(folder);
+		
+		int fileCounter = 0;
+
+		for (File file : directory.listFiles()) { //Iterate through each file in the "collection" directory
 			
-<<<<<<< Updated upstream
-			File directory = new File(folder);
-			
-			int fileCounter = 0;
-
-			for (File file : directory.listFiles()) { //Iterate through each file in the "collection" directory
-				
-			    Scanner fileScan = new Scanner(file);
-			    String fileName = file.getName();
-			    
-                String[] id = fileName.split("[-.]");
-                
-                int docID = Integer.parseInt(id[1]);
-                
-
-		        while(fileScan.hasNext()) //Read every line in each of the documents
-		        {
-		            String reader = fileScan.nextLine();
-		            String delims = "(['$?/\" ,;-]+)";
-		            String [] line = reader.split(delims);
-		            
-		            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
-		            {
-		              String str = line[n];
-                      str = str.toLowerCase(); //set all words to lowercase
-                      Word word  = new Word(str);
-                      
-		                if(!str.equals("s") && checkStopWord(word))//(does not match with stopword)
-		                {
-		                	//add
-		                	//search the list for a match to a word
-		                	//get the list 
-		                	
-		                	
-		                	//Add word to dictionary if not already there
-		                	//Otherwise add a reference to the word thats already there
-		                    /*
-		                    
-		                    
-		                    
-		                    
-		                    
-		                     */
-		                	
-		                	
-		                    // Add doc reference to word object
-		                   int index = dictionary.indexOf(word);
-		                   DocRef ref = new DocRef(docID);
-		                   
-		                   if(index==-1)
-		                   {
-		                	   word.addRef(ref);
-		                	   dictionary.add(word);
-		                   }
-		                   else
-		                   {
-		                	   dictionary.get(index).addRef(ref);
-		                   }
-		              
-		                }
-		            }
-		        }
-		        
-		        fileCounter++;
-			    if(fileCounter>50) {
-			    	break;
-			    }
-			    fileScan.close();
-
-		        
-		        //Test to see if all files are being read
-
-			    
-			}
-			System.out.println("Words in dictionary: "+dictionary.size());
-			
-		} 
-		catch (Exception e) {
-			System.out.println("Error in file directory.");
-		}
-=======
 		    Scanner fileScan = new Scanner(file);
 		    String fileName = file.getName();
 		    
             String[] id = fileName.split("[-.]");
             
             int docID = Integer.parseInt(id[1]);
+            
 
 	        while(fileScan.hasNext()) //Read every line in each of the documents
 	        {
@@ -160,7 +79,18 @@ public class Dictionary {
 	                	//search the list for a match to a word
 	                	//get the list 
 	                	
-
+	                	
+	                	//Add word to dictionary if not already there
+	                	//Otherwise add a reference to the word thats already there
+	                    /*
+	                    
+	                    
+	                    
+	                    
+	                    
+	                     */
+	                	
+	                	
 	                    // Add doc reference to word object
 	                   int index = dictionary.indexOf(word);
 	                   DocRef ref = new DocRef(docID);
@@ -180,16 +110,17 @@ public class Dictionary {
 	        }
 	        
 	        fileCounter++;
-		    if(fileCounter>5) {
+		    if(fileCounter>50) {
 		    	break;
 		    }
 		    fileScan.close();
 
+	        
+	        //Test to see if all files are being read
+
 		    
 		}
-		System.out.println("Words in dictionary: " + dictionary.size());
-
->>>>>>> Stashed changes
+		System.out.println("Words in dictionary: "+dictionary.size());
 	}
 	
 	/**
@@ -220,10 +151,6 @@ public class Dictionary {
 		
 		
 		 */
-<<<<<<< Updated upstream
-		
-=======
->>>>>>> Stashed changes
 		Word word = new Word(str);
 		int index = dictionary.indexOf(word);
 		if(index==-1) { //if not found return null
