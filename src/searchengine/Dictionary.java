@@ -43,7 +43,7 @@ public class Dictionary {
 			   "s",
 			   "that","the","to",
 			   "was","were","will","with",
-			   ".", "\n", " "
+			   "."
          };
    
 	/**
@@ -76,20 +76,20 @@ public class Dictionary {
 	        while(fileScan.hasNext()) //Read every line in each of the documents
 	        {
 	            String reader = fileScan.nextLine();
-	            String delims = "([0123456789:#!()&'$?/\" ,;-]+)";
+	            String delims = "([0123456789:#!()&'$?/\" ,\\[;-])";
 	            String [] line = reader.split(delims);
 	            
 	            for(int n = 0; n < line.length; n++) //Iterate through each word in the line
 	            {
-	              String str = line[n];
-                  str = str.toLowerCase(); //set all words to lowercase
+	              String str = line[n].toLowerCase();
+
                   //Create word object
                   Word word  = new Word(str);
                   
                   //Create reference for that word
                   DocRef ref = new DocRef(docID);
                   
-	                if(checkStopWord(word))//(does not match with stopword)
+	                if(checkStopWord(word) && !str.isBlank())//(does not match with stopword)
 	                {
 	                	//add
 	                	//search the list for a match to a word
