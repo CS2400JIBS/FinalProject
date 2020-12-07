@@ -53,6 +53,9 @@ public class Dictionary {
 	 * @throws FileNotFoundException 
 	 */
 	Dictionary(String folder, PrintWriter pw) throws FileNotFoundException {
+		
+		Instant before = Instant.now();
+		
 		this.pw = pw;
 		
 		dictionaryTree = new BinarySearchTree(this.pw);
@@ -129,7 +132,12 @@ public class Dictionary {
 
 		    
 		}
-		System.out.println("Words in dictionaryTree: "+this.dictionaryTree.size);
+		System.out.println("Words in dictionary: "+this.dictionaryTree.size);
+		pw.write("Words in dictionary: "+this.dictionaryTree.size+"\n");
+		Instant after = Instant.now();
+		long duration = Duration.between(before, after).toMillis();
+		System.out.println("Time to build dictionary BST: "+duration+ " miliseconds");
+		this.pw.write("Time to build dictionary BST: "+duration+ " miliseconds\n");
 	}
 	
 	/**
@@ -236,6 +244,8 @@ public class Dictionary {
 			Collections.sort(combList);
 			Collections.reverse(combList);
 			combList.stream().forEach(System.out::println);
+			for(int i=0; i<combList.size(); i++)
+				pw.write(combList.get(i).toString()+"\n");
 
 			while(!combList.isEmpty())
 			{
@@ -248,20 +258,29 @@ public class Dictionary {
 				if(ref.getFrequency()>f)
 					duplicates.add(ref);
 			}
-			this.pw.write("Duplicates List:\n");
-			System.out.println("Duplicates List:");
-			//duplicates.stream().forEach(pw::write);
+			this.pw.write("\nDuplicates List:\n");
+			System.out.println("\nDuplicates List:");
+			for(int i=0; i<duplicates.size(); i++)
+				pw.write(duplicates.get(i).toString()+"\n");
+			pw.write("\n");
 			duplicates.stream().forEach(System.out::println);
+			System.out.println();
 			
 			this.pw.write("Final List:\n");
 			System.out.println("Final List:");
 			
 			finalList.removeAll(duplicates);
 			finalList.addAll(duplicates);
-			
 			Collections.sort(finalList);
 			Collections.reverse(finalList);
-			finalList.stream().forEach(System.out::println);
+			
+			for(int i=0; i<duplicates.size() && i < 10; i++)
+			{
+				String finalRef = finalList.get(i).toString();
+				pw.write(finalRef+"\n");
+				System.out.println(finalRef);
+				
+			}
 			
 		}
 		
@@ -269,8 +288,8 @@ public class Dictionary {
 		
 		Instant after = Instant.now();
 		long duration = Duration.between(before, after).toMillis();
-		System.out.println(duration+ " miliseconds");
-		this.pw.write(duration+ " miliseconds\n");
+		System.out.println("\nQuery time: "+ duration+ " miliseconds\n");
+		this.pw.write("\nQuery time: "+ duration + " miliseconds\n\n");
 		
 	}
 	
@@ -278,6 +297,11 @@ public class Dictionary {
 		//for each word in the dictionary
 		//print out doc frequency
 		//print out references in doc order
+		Instant before = Instant.now();
 		this.dictionaryTree.traversal();
+		Instant after = Instant.now();
+		long duration = Duration.between(before, after).toMillis();
+		System.out.println("\nTime to build index "+duration+ " miliseconds");
+		this.pw.write("\nTime to build index "+duration+ " miliseconds\n");
 	}
 }

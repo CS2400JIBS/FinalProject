@@ -11,14 +11,15 @@ import java.util.Scanner;
 public class Client {
 
 	public static void main(String[] args) throws IOException  {
+		
 		PrintWriter pw = new PrintWriter(new FileWriter("output.txt"));
 		Dictionary dictionary = new Dictionary("collection", pw);
 		dictionary.invertedIndex();
 		System.out.println();
 		
 		Scanner input = new Scanner(System.in);
-		pw.write("Enter a word(s) to query:\n");
-		System.out.println("Enter a word(s) to query: ");		
+		pw.write("\nEnter a word or group of words to query:\n");
+		System.out.println("Enter a word or group of words to query:");		
 		String query = input.nextLine();
 		pw.write(query+"\n");
 		dictionary.query(query);
