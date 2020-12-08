@@ -11,6 +11,8 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Dictionary {
+	public static int fileCounter=0;
+	
 	
 	/**
 	 * List of words
@@ -64,8 +66,6 @@ public class Dictionary {
 		
 		File directory = new File(folder);
 		
-		int fileCounter = 0;
-
 		for (File file : directory.listFiles()) { //Iterate through each file in the "collection" directory
 			
 		    Scanner fileScan = new Scanner(file);

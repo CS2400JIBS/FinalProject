@@ -48,6 +48,7 @@ public class DocRef implements Comparable<DocRef>
 	public int getFrequency() {
 		return frequency;
 	}
+	
 
 	/**
 	 * 
@@ -58,7 +59,15 @@ public class DocRef implements Comparable<DocRef>
 		this.frequency = frequency;
 	}
 	
-	
+	public int getWeightedFreq()
+	{
+	   int numberDoc = Dictionary.fileCounter;
+	   int idf = (int)Math.log10(numberDoc/this.getFrequency());
+	      
+	   return idf * getFrequency();
+	      
+	}
+
 	/**
 	 * Increments the frequency counter (tracking the number of word occurrences) of the document reference
 	 */
@@ -110,7 +119,7 @@ public class DocRef implements Comparable<DocRef>
 
 	@Override
 	public String toString() {
-		return "[Doc-" + docID + ", frequency=" + frequency + "]";
+		return "[Doc-" + docID + ", frequency=" + frequency + ", WF ="+ this.getWeightedFreq()+"]";
 	}
 	
 }
